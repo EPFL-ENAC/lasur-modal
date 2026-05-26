@@ -24,7 +24,7 @@ services:
       - web
 
   backend:
-    image: ghcr.io/epfl-enac/epfl-lasur/platyp/backend:latest
+    image: ghcr.io/epfl-enac/epfl-lasur/modal/backend:latest
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.rule=Host(`toolkit.modus-ge.ch`) && PathPrefix(`/api`)"
@@ -48,7 +48,7 @@ services:
       - web
 
   admin:
-    image: ghcr.io/epfl-enac/epfl-lasur/platyp/admin:latest
+    image: ghcr.io/epfl-enac/epfl-lasur/modal/admin:latest
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.admin.rule=Host(`toolkit.modus-ge.ch`) && PathPrefix(`/admin`)"
@@ -67,7 +67,7 @@ services:
       - web
 
   collect:
-    image: ghcr.io/epfl-enac/epfl-lasur/platyp/collect:latest
+    image: ghcr.io/epfl-enac/epfl-lasur/modal/collect:latest
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.collect.rule=Host(`toolkit.modus-ge.ch`) && PathPrefix(`/`)"

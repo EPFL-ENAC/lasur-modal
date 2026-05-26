@@ -7,7 +7,7 @@ export const useAuthStore = defineStore('auth', () => {
   const profile = ref<KeycloakProfile>()
   const realmRoles = ref<string[]>([])
   const isAuthenticated = computed(() => profile.value !== undefined)
-  const isAdmin = computed(() => realmRoles.value.includes('platyp-admin'))
+  const isAdmin = computed(() => realmRoles.value.includes('modal-admin'))
   const initialized = ref(false)
 
   const accessToken = computed(() => keycloak.token)

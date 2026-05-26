@@ -125,7 +125,7 @@ watch(
       if (!editMode.value) {
         onGeneratePassword()
       }
-      isAdministrator.value = selected.value.roles?.includes('platyp-admin') ?? false
+      isAdministrator.value = selected.value.roles?.includes('modal-admin') ?? false
     }
     showPassword.value = false
     showDialog.value = value
@@ -147,11 +147,11 @@ async function onSave() {
     selected.value.roles = []
   }
   if (isAdministrator.value) {
-    if (!selected.value.roles.includes('platyp-admin')) {
-      selected.value.roles.push('platyp-admin')
+    if (!selected.value.roles.includes('modal-admin')) {
+      selected.value.roles.push('modal-admin')
     }
   } else {
-    const index = selected.value.roles.indexOf('platyp-admin')
+    const index = selected.value.roles.indexOf('modal-admin')
     if (index !== -1) {
       selected.value.roles.splice(index, 1)
     }

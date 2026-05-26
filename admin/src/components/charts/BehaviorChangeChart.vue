@@ -8,7 +8,7 @@
       :option="option"
       :update-options="updateOptions"
       :loading="props.loading"
-      :theme="$q.dark.isActive ? 'platyp-dark' : 'platyp'"
+      :theme="$q.dark.isActive ? 'modal-dark' : 'modal'"
     />
     <div v-else>
       <div class="text-h6 text-center">{{ t(`stats.behavior_change_${props.type}.title`) }}</div>
@@ -185,7 +185,7 @@ function initChartOptions() {
     series: opt.series,
   }
   if (props.percent) {
-    (newOption.xAxis as XAXisOption).max = 100
+    ;(newOption.xAxis as XAXisOption).max = 100
   }
   option.value = newOption
 }

@@ -8,7 +8,7 @@ export const updateOptions: SetOptionOpts = {
   notMerge: true,
 }
 
-registerTheme('platyp', {
+registerTheme('modal', {
   textStyle: {
     fontFamily: 'Nunito, sans-serif',
   },
@@ -22,7 +22,7 @@ registerTheme('platyp', {
   },
   color: [getCssVar('primary')],
 })
-registerTheme('platyp-dark', {
+registerTheme('modal-dark', {
   textStyle: {
     fontFamily: 'Nunito, sans-serif',
     color: '#bca2b0',

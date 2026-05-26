@@ -1,6 +1,6 @@
-# PLATYP Admin (admin)
+# MODAL Admin (admin)
 
-PLATYP administration
+MODAL administration
 
 ## Install the dependencies
 

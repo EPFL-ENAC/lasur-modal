@@ -204,8 +204,8 @@ Thank you for your valuable contribution! If you have any questions, please cont
     },
   },
   role: {
-    'platyp-user': 'User',
-    'platyp-admin': 'Administrator',
+    'modal-user': 'User',
+    'modal-admin': 'Administrator',
   },
   participant: {
     identifier: 'Identifier',

@@ -212,8 +212,8 @@ Nous vous remercions pour votre précieuse collaboration ! En cas de question, n
     },
   },
   role: {
-    'platyp-user': 'Utilisateur',
-    'platyp-admin': 'Administrateur',
+    'modal-user': 'Utilisateur',
+    'modal-admin': 'Administrateur',
   },
   participant: {
     identifier: 'Identifiant',

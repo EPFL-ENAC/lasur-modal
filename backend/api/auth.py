@@ -5,8 +5,8 @@ from api.config import config
 from api.db import get_session
 from api.services.authz import ACLService
 
-ADMIN_ROLE = "platyp-admin"
-USER_ROLE = "platyp-user"
+ADMIN_ROLE = "modal-admin"
+USER_ROLE = "modal-user"
 
 kc_service = KeycloakService(config.KEYCLOAK_URL, config.KEYCLOAK_REALM,
                              config.KEYCLOAK_API_ID, config.KEYCLOAK_API_SECRET, ADMIN_ROLE)

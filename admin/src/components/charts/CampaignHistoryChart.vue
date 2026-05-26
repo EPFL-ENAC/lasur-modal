@@ -6,7 +6,7 @@
       :init-options="initOptions"
       :option="option"
       :update-options="updateOptions"
-      :theme="$q.dark.isActive ? 'platyp-dark' : 'platyp'"
+      :theme="$q.dark.isActive ? 'modal-dark' : 'modal'"
     />
   </div>
 </template>

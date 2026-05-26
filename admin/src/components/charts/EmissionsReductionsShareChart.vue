@@ -8,7 +8,7 @@
       :option="option"
       :update-options="updateOptions"
       :loading="props.loading"
-      :theme="$q.dark.isActive ? 'platyp-dark' : 'platyp'"
+      :theme="$q.dark.isActive ? 'modal-dark' : 'modal'"
     />
     <div v-else>
       <div class="text-h6 text-center">{{ t(`stats.emissions_reductions_share.title`) }}</div>

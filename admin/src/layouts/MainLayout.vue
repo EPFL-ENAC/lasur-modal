@@ -135,7 +135,7 @@
               <div class="text-body1">{{ username }}</div>
               <div class="actions-bar">
                 <q-chip color="foreground" text-color="white" class="q-ma-none">{{
-                  authStore.isAdmin ? t('role.platyp-admin') : t('role.platyp-user')
+                  authStore.isAdmin ? t('role.modal-admin') : t('role.modal-user')
                 }}</q-chip>
                 <q-btn
                   color="foreground"

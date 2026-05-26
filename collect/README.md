@@ -1,6 +1,6 @@
-# PLATYP Collect (collect)
+# MODAL Collect (collect)
 
-Data collection app for PLATYP
+Data collection app for MODAL
 
 ## Install the dependencies
 

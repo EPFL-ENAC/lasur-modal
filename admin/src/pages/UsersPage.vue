@@ -42,8 +42,8 @@
         <template v-slot:body-cell-roles="props">
           <q-td :props="props">
             <q-icon
-              :name="props.row.roles.includes('platyp-admin') ? 'check' : 'close'"
-              :color="props.row.roles.includes('platyp-admin') ? 'positive' : 'negative'"
+              :name="props.row.roles.includes('modal-admin') ? 'check' : 'close'"
+              :color="props.row.roles.includes('modal-admin') ? 'positive' : 'negative'"
               size="20px"
             />
           </q-td>

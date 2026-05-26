@@ -12,13 +12,8 @@
           @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title class="logos">
-          <a href="https://modus-ge.ch/" target="_blank" class="logo" rel="noopener noreferrer">
-            <img
-              :src="$q.dark.isActive ? '/admin/LOGO-JAUNE.svg' : '/admin/LOGO-VIOLET.svg'"
-              height="32px"
-            />
-          </a>
+        <q-toolbar-title>
+          <span class="text-weight-bold text-foreground">{{ t('main.brand') }}</span>
         </q-toolbar-title>
 
         <q-btn-dropdown flat dense color="foreground" :label="locale" class="on-left">
@@ -149,7 +144,6 @@
                   class="auth-button"
                   @click="onLogout"
                 >
-                  {{ t('signout') }}
                 </q-btn>
               </div>
             </div>
@@ -159,29 +153,18 @@
     </q-drawer>
 
     <q-page-container v-if="authStore.isAuthenticated">
-      <div class="background-container">
-        <img
-          :src="$q.dark.isActive ? '/admin/PATTERN-BLANC.svg' : '/admin/PATTERN-VIOLET.svg'"
-          aria-hidden="true"
-          class="background-pattern"
-        />
-      </div>
       <router-view />
     </q-page-container>
-
-    <app-footer />
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import AppFooter from 'src/components/AppFooter.vue'
-import { Cookies, useQuasar } from 'quasar'
+import { Cookies } from 'quasar'
 import { locales } from 'boot/i18n'
 
 const authStore = useAuthStore()
 const { locale, t } = useI18n()
 const router = useRouter()
-const $q = useQuasar()
 
 const leftDrawerOpen = ref(false)
 
@@ -245,20 +228,6 @@ function onLocaleSelection(localeOpt: { label: string; value: string }) {
 
   pointer-events: none;
   z-index: -1;
-}
-
-.background-pattern {
-  position: absolute;
-
-  top: -10rem;
-  left: 15rem;
-  width: 100rem;
-  height: 200rem;
-
-  object-fit: contain;
-  rotate: -40deg;
-
-  opacity: 0.05;
 }
 
 .nav-wrapper {

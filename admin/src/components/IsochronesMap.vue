@@ -56,7 +56,7 @@
         </q-menu>
       </q-btn>
       <div :id="mapId" :style="`--t-height: ${height || '400px'}`" class="mapview" />
-      <div class="colors q-pa-sm bg-white text-foreground text-caption rounded-borders">
+      <div class="colors q-pa-sm bg-white text-foreground text-caption">
         <div class="row q-gutter-sm">
           <div
             v-for="cutoff in selectedModeCutoffSec"

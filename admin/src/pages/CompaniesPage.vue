@@ -4,7 +4,7 @@
       <div class="text-h4 text-title">{{ t('companies') }}</div>
 
       <div class="title-toolbar">
-        <q-input dense outlined rounded color="field" debounce="300" v-model="filter" clearable>
+        <q-input dense outlined color="field" debounce="300" v-model="filter" clearable>
           <template v-slot:append>
             <q-icon name="search" />
           </template>
@@ -30,7 +30,6 @@
         v-model:pagination="pagination"
         :loading="loading"
         :filter="filter"
-        table-header-class="bg-secondary-ultra-light text-secondary"
         binary-state-sort
         @request="onRequest"
         :rows-per-page-options="[10, 25, 50]"
@@ -52,15 +51,6 @@
         <template v-slot:body-cell-administrators="props">
           <q-td :props="props">
             <q-badge color="primary" :label="props.row.administrators.length || 0" />
-          </q-td>
-        </template>
-        <template v-slot:body-cell-can_be_cited="props">
-          <q-td :props="props">
-            <q-icon
-              :name="props.row.can_be_cited ? 'check_circle' : 'cancel'"
-              :color="props.row.can_be_cited ? 'positive' : 'negative'"
-              size="sm"
-            />
           </q-td>
         </template>
         <template v-slot:body-cell-action="props">
@@ -162,14 +152,6 @@ const columns = computed(() => {
       align: DefaultAlignment,
       field: (row: Company) => t(`company.roles.${authStore.roleInThisCompany(row)}`),
       sortable: false,
-    },
-    {
-      name: 'can_be_cited',
-      required: true,
-      label: t('company.can_be_cited'),
-      align: DefaultAlignment,
-      field: 'can_be_cited',
-      sortable: true,
     },
     {
       name: 'updated_at',

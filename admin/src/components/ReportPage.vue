@@ -53,12 +53,6 @@ const { t } = useI18n()
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/admin/PATTERN-JAUNE.svg');
-  background-repeat: no-repeat;
-  background-position: 0rem -5rem;
-  background-size: cover;
-  opacity: 0.1;
-  z-index: -1;
 }
 
 header {

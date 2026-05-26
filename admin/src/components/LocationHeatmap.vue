@@ -204,7 +204,6 @@ function onInit() {
   z-index: 2;
   background: white;
   padding: 12px;
-  border-radius: 4px;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
   font-family: sans-serif;
   font-size: 12px;

@@ -7,7 +7,6 @@
         emit-value
         map-options
         use-chips
-        rounded
         outlined
         color="field"
         bg-color="field"
@@ -35,7 +34,6 @@
         emit-value
         map-options
         use-chips
-        rounded
         outlined
         color="field"
         bg-color="field"
@@ -53,21 +51,19 @@
           icon="map"
           color="field"
           outline
-          dense
-          :label="t('stats.filter_by_zone')"
+          :title="t('stats.filter_by_zone')"
           no-caps
           @click="onMapFilter"
         >
-          <q-badge v-if="areaCount > 0" color="orange" floating rounded />
+          <q-badge v-if="areaCount > 0" color="orange" floating />
         </q-btn>
         <q-btn
           class="right-border"
           size="sm"
           color="field"
           outline
-          dense
           :icon="layout === 'grid' ? 'slideshow' : 'grid_view'"
-          :label="layout === 'grid' ? t('stats.switch_to_carousel') : t('stats.switch_to_grid')"
+          :title="layout === 'grid' ? t('stats.switch_to_carousel') : t('stats.switch_to_grid')"
           no-caps
           @click="layout = layout === 'grid' ? 'carousel' : 'grid'"
         />
@@ -76,10 +72,9 @@
           size="sm"
           color="field"
           outline
-          dense
           icon="picture_as_pdf"
           :disable="stats.loading"
-          :label="t('stats.pdf_report')"
+          :title="t('stats.pdf_report')"
           no-caps
           @click="goToReport"
         />

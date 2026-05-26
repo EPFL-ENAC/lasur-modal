@@ -2,20 +2,11 @@
   <div>
     <div class="q-mb-sm text-foreground">{{ label }}</div>
     <div>{{ hint }}</div>
-    <q-tabs
-      v-model="tab"
-      dense
-      no-caps
-      active-color="secondary"
-      active-bg-color="white"
-      active-class="tab-active"
-      indicator-color="transparent"
-      class="bg-secondary-ultra-light"
-      align="left"
-    >
+    <q-tabs v-model="tab" no-caps align="left">
       <q-tab name="personnal" :label="t('actions.personnal')" />
       <q-tab name="professional" :label="t('actions.professional')" />
     </q-tabs>
+    <q-separator />
     <q-tab-panels v-model="tab">
       <q-tab-panel name="personnal" class="q-pl-none q-pr-none">
         <template v-for="type in Object.keys(actionOptions)" :key="type">

@@ -10,4 +10,4 @@ down-db:
 	docker compose down postgres
 
 connect-db:
-	psql -h localhost -d platyp -U postgres
+	psql -h localhost -d modal -U postgres

@@ -10,17 +10,7 @@
 
       <q-card-section>
         <q-form ref="form">
-          <q-tabs
-            v-model="tab"
-            dense
-            no-caps
-            active-color="secondary"
-            active-bg-color="white"
-            active-class="tab-active"
-            indicator-color="transparent"
-            class="bg-secondary-ultra-light"
-            align="left"
-          >
+          <q-tabs v-model="tab" no-caps align="left">
             <q-tab name="general" :label="t('general')" />
             <q-tab
               name="workplaces"
@@ -28,11 +18,11 @@
               :alert="validWorkplaces ? false : 'negative'"
             />
           </q-tabs>
+          <q-separator />
           <q-tab-panels animated v-model="tab">
             <q-tab-panel name="general">
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model="selected.name"
                 :label="t('name') + ' *'"
@@ -41,7 +31,6 @@
               />
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model="selected.contact_name"
                 :label="t('campaign.contact_name')"
@@ -50,7 +39,6 @@
               />
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model="selected.contact_email"
                 :label="t('campaign.contact_email')"
@@ -64,7 +52,6 @@
               />
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model="selected.info_url"
                 :label="t('campaign.info_url')"
@@ -75,7 +62,6 @@
               />
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model.number="selected.nb_employees"
                 type="number"
@@ -87,7 +73,6 @@
               <q-input
                 v-if="editMode"
                 outlined
-                rounded
                 color="field"
                 v-model="selected.slug"
                 :label="t('campaign.slug') + ' *'"
@@ -106,7 +91,6 @@
               </q-input>
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model="selected.start_date"
                 :label="t('start_date')"
@@ -126,7 +110,6 @@
               </q-input>
               <q-input
                 outlined
-                rounded
                 color="field"
                 v-model="selected.end_date"
                 :label="t('end_date')"
@@ -172,7 +155,6 @@
                     <q-input
                       v-if="withRewards"
                       outlined
-                      rounded
                       color="field"
                       type="textarea"
                       v-model="selected.rewards_message[locale]"

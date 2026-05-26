@@ -8,7 +8,7 @@
             <span v-if="campaign"> - {{ campaign?.name }}</span>
           </q-toolbar-title>
           <q-btn flat icon="map" @click="showMapFilter = true">
-            <q-badge v-if="areaCount > 0" color="orange" floating rounded />
+            <q-badge v-if="areaCount > 0" color="orange" floating />
           </q-btn>
           <q-btn flat icon="picture_as_pdf" @click="goToReport" />
         </q-toolbar>

@@ -11,7 +11,6 @@
       <q-card-section>
         <q-input
           outlined
-          rounded
           color="field"
           v-model="password"
           :type="showPassword ? 'text' : 'password'"

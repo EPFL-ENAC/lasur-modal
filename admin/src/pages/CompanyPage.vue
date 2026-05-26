@@ -90,7 +90,6 @@
       bordered
       :rows="campaigns"
       :columns="columns"
-      table-header-class="bg-secondary-ultra-light text-secondary"
       row-key="id"
       :loading="campaignsStore.loading"
       :no-data-label="t('no_data')"

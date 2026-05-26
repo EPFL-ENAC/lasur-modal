@@ -2,7 +2,6 @@
   <div>
     <q-input
       outlined
-      rounded
       color="field"
       v-model="addressLocation.address"
       :label="label"

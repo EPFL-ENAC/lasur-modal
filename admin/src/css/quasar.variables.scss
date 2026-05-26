@@ -27,23 +27,21 @@ $brand-purple-800: #382430;
 $brand-purple-900: #291823;
 $brand-purple-950: #0c0e12;
 
-$primary: $brand-yellow-500;
-$secondary: $brand-purple-600;
-$accent: $brand-yellow-500;
+$primary: red;
+$secondary: #4f8fcc;
+$accent: #00a79f;
 
-$dark: $brand-purple-800;
-$dark-page: $brand-purple-800;
+$dark: #1d1d1d;
+$dark-page: #121212;
 
 $positive: #21ba45;
 $negative: #c10015;
-$info: #80a795;
-$warning: #e6a21a;
-
-$button-border-radius: 8px;
+$info: #0594b1;
+$warning: #f2c037;
 
 // Theme Tokens
 body {
-  --nav-bg: #{$brand-yellow-100};
+  --nav-bg: white;
   --foreground-color: #{$brand-purple-600};
   --foreground-bg: #{$brand-purple-600};
   --background: white;
@@ -116,7 +114,7 @@ body.body--dark {
 }
 
 .text-title {
-  color: var(--title-color) !important;
+  color: var(--foreground-color) !important;
 }
 
 .text-field {
@@ -129,26 +127,7 @@ body.body--dark {
 
 // Quasar Overrides using variables
 
-.bg-secondary-ultra-light {
-  background-color: $brand-purple-100 !important;
-}
-
-.q-btn {
-  padding: 4px 8px !important;
-}
-
-.q-btn.bg-primary {
-  color: $secondary !important;
-  outline: 1px solid $brand-yellow-600 !important;
-}
-
-.q-badge.bg-primary,
-.q-chip.bg-primary {
-  color: $secondary !important;
-}
-
 .q-card {
-  border-radius: 1rem !important;
   border: 1px solid var(--secondary-border-color) !important;
 }
 
@@ -169,23 +148,12 @@ body.body--dark {
   border-right: 1px solid var(--secondary-border-color) !important;
 }
 
-.q-dialog__inner > .q-card.dialog-md {
-  border-radius: 1rem !important;
-}
-
 .q-separator {
   background-color: var(--secondary-border-color) !important;
 }
 
 .q-table__container {
   border: 1px solid var(--secondary-border-color) !important;
-  border-radius: 1rem !important;
-}
-
-.q-tabs {
-  border-radius: 0.5rem !important;
-  border: 1px solid var(--secondary-border-color) !important;
-  color: $brand-purple-300 !important;
 }
 
 .text-hint {

@@ -1,4 +1,4 @@
-# LASUR - PLATYP
+# LASUR - MODAL
 
 Plateforme typologie des choix modaux
 
@@ -6,7 +6,7 @@ Plateforme typologie des choix modaux
 
 ## Environment 
 
-What the .env file should look like for the PLATYP backend:
+What the .env file should look like for the Modal backend:
 
 ```sh
 # Postgres
@@ -14,7 +14,7 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=password
-DB_NAME=platyp
+DB_NAME=modal
 DB_PREFIX=postgresql+asyncpg
 # FastAPI prefix
 PATH_PREFIX=

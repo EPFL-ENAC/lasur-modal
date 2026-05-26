@@ -1,5 +1,5 @@
 <template>
-  <q-footer class="footer q-py-lg q-px-xl bg-secondary">
+  <q-footer class="footer q-py-lg q-px-xl">
     <div>
       <a
         href="https://modus-ge.ch/project/toolkit-mobilite"

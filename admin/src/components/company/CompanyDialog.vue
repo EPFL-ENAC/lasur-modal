@@ -12,7 +12,6 @@
         <q-form ref="form">
           <q-input
             outlined
-            rounded
             color="field"
             v-model="selected.name"
             :label="t('name') + ' *'"
@@ -21,7 +20,6 @@
           />
           <q-select
             outlined
-            rounded
             color="field"
             v-model="selected.administrators"
             :label="t('company.administrators') + ' *'"
@@ -37,7 +35,6 @@
           />
           <q-select
             outlined
-            rounded
             color="field"
             :model-value="selected.mobility_advisors || []"
             @update:model-value="(val) => (selected.mobility_advisors = val)"
@@ -53,7 +50,6 @@
           />
           <q-input
             outlined
-            rounded
             color="field"
             v-model="selected.contact_name"
             :label="t('company.contact_name')"
@@ -62,7 +58,6 @@
           />
           <q-input
             outlined
-            rounded
             color="field"
             v-model="selected.contact_email"
             :label="t('company.contact_email')"
@@ -75,20 +70,12 @@
           />
           <q-input
             outlined
-            rounded
             color="field"
             v-model="selected.info_url"
             :label="t('company.info_url')"
             :hint="t('company.info_url_hint')"
             lazy-rules
             :rules="[(val) => !val || /^(http|https):/.test(val) || t('valid_url_required')]"
-            class="q-mb-md"
-          />
-          <q-toggle
-            v-model="selected.can_be_cited"
-            :label="t('company.can_be_cited_toggle')"
-            :true-value="false"
-            :false-value="true"
             class="q-mb-md"
           />
         </q-form>

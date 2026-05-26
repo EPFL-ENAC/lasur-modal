@@ -3,10 +3,7 @@
     <q-page-container>
       <q-page class="flex flex-center bg-blue-grey-1">
         <q-card :style="$q.screen.lt.sm ? { width: '80%' } : { width: '400px' }">
-          <q-card-actions class="flex justify-center q-mt-lg q-ml-xl q-mr-xl q-mb-xs">
-            <img src="modus.svg" height="50px" />
-          </q-card-actions>
-          <q-card-actions class="flex justify-center">
+          <q-card-actions class="flex justify-center q-ma-xl">
             <span class="text-primary text-h5 on-right">{{ t('main.brand') }}</span>
           </q-card-actions>
           <q-card-section class="q-mx-lg q-my-md q-pa-none">

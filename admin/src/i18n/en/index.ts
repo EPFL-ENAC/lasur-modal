@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'Mobilyse',
+    brand: 'Modal Admin',
   },
   company: {
     label: 'Organisation',
@@ -409,7 +409,8 @@ Some environmental impacts have also been calculated:
         combined: 'Combined',
       },
       texts: {
-        default: 'The mode Car is the most used in the Geneva canton ([MRMT survey, 2015](https://statistique.ge.ch/tel/publications/2023/analyses/communications/an-cs-2023-71.pdf)).',
+        default:
+          'The mode Car is the most used in the Geneva canton ([MRMT survey, 2015](https://statistique.ge.ch/tel/publications/2023/analyses/communications/an-cs-2023-71.pdf)).',
         specific:
           'The mode {top_1} is the most used by participants, followed by {top_2} and {top_3}.',
       },

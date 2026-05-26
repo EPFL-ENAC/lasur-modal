@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'Mobilyse',
+    brand: 'Modal Admin',
   },
   company: {
     label: 'Organisation',

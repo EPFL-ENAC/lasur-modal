@@ -18,7 +18,6 @@
                 <div class="q-mt-md">
                   <q-select
                     outlined
-                    rounded
                     color="field"
                     v-model="action.group"
                     :label="t('group')"
@@ -31,7 +30,6 @@
                 <div>
                   <q-input
                     outlined
-                    rounded
                     color="field"
                     v-model="action.labelEn"
                     :label="t('label_en') + ' *'"
@@ -42,7 +40,6 @@
                 <div>
                   <q-input
                     outlined
-                    rounded
                     color="field"
                     v-model="action.labelFr"
                     :label="t('label_fr') + ' *'"
@@ -54,7 +51,6 @@
               <q-item-section avatar>
                 <q-btn
                   icon="delete"
-                  rounded
                   dense
                   flat
                   color="negative"
@@ -68,7 +64,6 @@
         <q-toolbar>
           <q-select
             outlined
-            rounded
             color="field"
             dense
             v-model="newAction.group"

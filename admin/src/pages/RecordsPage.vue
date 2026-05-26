@@ -7,7 +7,6 @@
       <q-table
         flat
         ref="tableRef"
-        table-header-class="bg-secondary-ultra-light text-secondary"
         :rows="rows"
         :columns="columns"
         row-key="id"
@@ -28,7 +27,6 @@
           <q-space />
           <q-select
             outlined
-            rounded
             color="field"
             dense
             multiple
@@ -44,7 +42,6 @@
           />
           <q-select
             outlined
-            rounded
             color="field"
             dense
             multiple
@@ -58,7 +55,7 @@
             style="min-width: 200px"
             @update:model-value="onFilter"
           />
-          <q-input dense outlined rounded color="field" debounce="300" v-model="filter" clearable>
+          <q-input dense outlined color="field" debounce="300" v-model="filter" clearable>
             <template v-slot:append>
               <q-icon name="search" />
             </template>

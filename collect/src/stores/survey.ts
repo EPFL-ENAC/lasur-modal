@@ -46,7 +46,7 @@ export const useSurvey = defineStore(
 
     function init(cr: Record) {
       record.value = cr
-      recommendation.value = {} as Recommendation
+      recommendation.value = {}
       started.value = false
       step.value = 1
       timestamp.value = Date.now()
@@ -54,13 +54,13 @@ export const useSurvey = defineStore(
 
     function finish() {
       record.value = {} as Record
-      recommendation.value = {} as Recommendation
+      recommendation.value = {}
       tokenOrSlug.value = null
     }
 
     function reset() {
       record.value = {} as Record
-      recommendation.value = {} as Recommendation
+      recommendation.value = {}
       started.value = false
       step.value = 0
       timestamp.value = Date.now()

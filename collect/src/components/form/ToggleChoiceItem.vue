@@ -7,7 +7,7 @@
         <template v-for="(group, idx) in optionGroups" :key="idx">
           <div :class="col ? `col-${12 / col}` : ''">
             <q-list>
-              <template v-for="option in group" :key="option.value">
+              <template v-for="(option, idx) in group" :key="idx">
                 <q-item
                   :active="isSelected(option)"
                   active-class="bg-teal-1 text-grey-8"

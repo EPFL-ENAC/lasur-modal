@@ -22,7 +22,7 @@ declare module 'vue-i18n' {
 }
 /* eslint-enable @typescript-eslint/no-empty-object-type */
 
-const defaultLocales = ['en', 'fr']
+const defaultLocales = ['fr', 'en'] // order of preference for fallback
 
 const locales = defaultLocales
 

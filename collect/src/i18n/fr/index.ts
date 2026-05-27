@@ -293,9 +293,9 @@ export default {
   token: 'Identifiant',
   lookup_address_or_select_on_map: 'Rechercher une adresse ou sélectionner sur la carte',
   type_enter_to_lookup_address: "Taper l'adresse puis Entrée pour chercher",
-  welcome: 'Bienvenue sur le {brand}',
+  welcome: 'Bienvenue sur {brand}',
   welcome_intro:
-    'Veuillez remplir ce questionnaire afin que nous puissions vous proposer les mesures de mobilité les plus pertinentes.',
+    'Nos déplacements domicile-travail font partie de notre quotidien... et soyons honnêtes, on en a toutes et tous un peu marre des bouchons, des trajets compliqués et du temps perdu sur la route.\n\nAujourd’hui, nous manquons encore d’éléments concrets pour bien comprendre les réalités, les contraintes et les besoins de chacun. C’est pourquoi nous testons, avec l’[EPFL](https://www.epfl.ch/labs/lasur/), un prototype qui vise à mieux analyser la mobilité domicile-travail et à identifier des solutions plus adaptées à notre contexte genevois.\n\nPour que ce test soit utile, nous avons besoin de vous comme bêta testeurs. Votre participation permettra de voir si l’outil fonctionne bien sur le terrain et s’il peut réellement apporter de la valeur.\n\nLa démarche est volontaire et anonyme. Le questionnaire prend environ 5 minutes et peut être rempli jusqu’au 10 juin.\n\n🎁 **Les 200 premiers répondants recevront à la fin du questionnaire un RailCheck CFF de CHF 5.–.**',
   no_results: 'Pas de résultat',
   local: 'Local',
   regional: 'National',

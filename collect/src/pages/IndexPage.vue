@@ -21,9 +21,7 @@
             <div class="text-h4 q-mb-md">
               {{ t('welcome', { brand: t('main.brand') }) }}
             </div>
-            <div class="text-h6 q-mb-md">
-              {{ t('welcome_intro') }}
-            </div>
+            <q-markdown class="text-h6 q-mb-md" :src="t('welcome_intro')" />
             <div v-if="survey.step > 1">
               <q-btn
                 rounded

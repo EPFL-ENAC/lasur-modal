@@ -33,17 +33,39 @@
 <script setup lang="ts">
 import { useQuasar } from 'quasar'
 import JourneyItem from 'src/components/form/steps/JourneyItem.vue'
+import type { Journey } from 'src/models'
 
 const { t } = useI18n()
 const survey = useSurvey()
 const q = useQuasar()
 
+onMounted(() => {
+  if (!survey.record.data.freq_mod_journeys) {
+    survey.record.data.freq_mod_journeys = []
+  }
+  if (survey.record.data.freq_mod_journeys.length == 0) {
+    onAddJourney()
+  }
+})
+
 function onAddJourney() {
   if (!survey.record.data.freq_mod_journeys) {
     survey.record.data.freq_mod_journeys = []
   }
+  let defaultDays = 5
+  if (survey.record.data.employment_rate) {
+    defaultDays = Math.round((survey.record.data.employment_rate / 100) * 5)
+  }
+  // substract the days of the previous journeys
+  if (survey.record.data.freq_mod_journeys.length > 0) {
+    const usedDays = survey.record.data.freq_mod_journeys.reduce(
+      (acc: number, journey: Journey) => acc + journey.days,
+      0,
+    )
+    defaultDays = Math.max(0, defaultDays - usedDays)
+  }
   survey.record.data.freq_mod_journeys.push({
-    days: 1,
+    days: defaultDays,
     modes: [],
   })
 }

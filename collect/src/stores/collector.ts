@@ -15,12 +15,12 @@ function makeRecord(rec: Partial<Record>): Record {
       terms_conditions: false,
       confidentiality: false,
       employment_rate: 100,
-      remote_work_rate: 40,
-      company_vehicle: null,
+      remote_work_rate: 0,
+      company_vehicle: false,
       travel_time: 5,
       equipments: [],
       constraints: [],
-      freq_mod_journeys: [{ modes: [], days: 1 }],
+      freq_mod_journeys: [],
       travel_pro: false,
       freq_mod_pro_journeys: [],
       importance_time: 1,
@@ -38,8 +38,8 @@ function makeRecord(rec: Partial<Record>): Record {
       needs_train: 1,
       change: {},
       change2: {},
-      ...rec.data
-    }
+      ...rec.data,
+    },
   } as unknown as Record // Type assertion to satisfy the original behavior
 }
 

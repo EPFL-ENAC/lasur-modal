@@ -9,6 +9,7 @@ export default {
       company_vehicle: 'Please indicate if you have a company vehicle',
       origin: 'Please enter a starting point',
       workplace: 'Please enter a workplace location',
+      journey_required: 'Please enter at least one journey',
       journey_mode: 'Please specify at least one mode of transport for each journey',
       journey_days: 'Please specify the number of days per week for each journey',
       pro_journey_mode: 'Please specify the mode of transport for each journey',

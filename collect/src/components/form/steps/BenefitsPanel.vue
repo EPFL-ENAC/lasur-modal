@@ -2,7 +2,7 @@
   <div v-if="hasBenefits(reco)">
     <q-btn
       :label="t('benefits.show')"
-      color="foreground"
+      color="primary"
       size="md"
       icon-right="workspace_premium"
       no-caps

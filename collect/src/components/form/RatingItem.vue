@@ -8,7 +8,7 @@
     <q-rating
       v-model="selected"
       size="3.5em"
-      color="accent"
+      color="primary"
       icon="star_border"
       :max="max || 5"
       @update:model-value="onUpdate"

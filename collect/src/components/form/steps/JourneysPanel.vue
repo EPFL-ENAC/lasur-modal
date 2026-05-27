@@ -14,7 +14,7 @@
               round
               :title="t('form.journey.remove')"
               icon="close"
-              color="accent"
+              color="primary"
               @click="onRemoveJourney(idx)"
             />
           </q-toolbar>

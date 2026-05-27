@@ -4,11 +4,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
-
 .page {
   --page-margins-x: 20mm;
   --page-margins-y: 15mm;
@@ -31,12 +29,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/PATTERN-VIOLET.svg');
-  background-repeat: no-repeat;
-  background-position: 0rem -5rem;
-  background-size: cover;
-  opacity: 0.1;
-  z-index: -1;
 }
 
 header {

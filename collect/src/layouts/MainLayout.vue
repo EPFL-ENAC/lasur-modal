@@ -2,13 +2,9 @@
   <q-layout view="hHh lpR fFf">
     <q-header bordered class="bg-nav">
       <q-toolbar>
-        <a href="https://modus-ge.ch/" target="_blank">
-          <img
-            :src="$q.dark.isActive ? '/LOGO-JAUNE.svg' : '/LOGO-VIOLET.svg'"
-            alt="Logo"
-            height="25px"
-          />
-        </a>
+        <q-toolbar-title>
+          <span class="text-weight-bold text-foreground">{{ t('main.brand') }}</span>
+        </q-toolbar-title>
 
         <q-space />
 
@@ -35,25 +31,18 @@
           :model-value="$q.dark.isActive"
           color="foreground"
           keep-color
-          @update:model-value="(e) => $q.dark.set(e)"
+          @update:model-value="(e) => onDarknessToggle(e)"
           :label="t('dark_mode')"
           class="q-mr-md text-foreground"
         />
 
         <a href="https://www.epfl.ch/labs/lasur/" target="_blank" class="q-mt-sm">
-          <img src="/EPFL.svg" height="20px" style="filter: grayscale(100%); opacity: 0.8" />
+          <img src="/EPFL.svg" height="20px" style="filter: grayscale(30%); opacity: 0.8" />
         </a>
       </q-toolbar>
     </q-header>
 
     <q-page-container>
-      <div class="background-container">
-        <img
-          :src="$q.dark.isActive ? '/PATTERN-BLANC.svg' : '/PATTERN-VIOLET.svg'"
-          aria-hidden="true"
-          class="background-pattern"
-        />
-      </div>
       <router-view />
     </q-page-container>
   </q-layout>
@@ -66,6 +55,15 @@ import { locales, t } from 'boot/i18n'
 const { locale } = useI18n()
 const $q = useQuasar()
 
+onMounted(() => {
+  const savedDark = Cookies.get('dark')
+  if (savedDark !== null) {
+    $q.dark.set(savedDark === '1')
+  } else {
+    onDarknessToggle(true)
+  }
+})
+
 const localeOptions = computed(() => {
   return locales.map((key) => ({
     label: key.toUpperCase(),
@@ -76,6 +74,11 @@ const localeOptions = computed(() => {
 function onLocaleSelection(localeOpt: { label: string; value: string }) {
   locale.value = localeOpt.value
   Cookies.set('locale', localeOpt.value)
+}
+
+function onDarknessToggle(val: boolean) {
+  $q.dark.set(val)
+  Cookies.set('dark', val ? '1' : '0')
 }
 </script>
 

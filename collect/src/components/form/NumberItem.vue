@@ -10,7 +10,7 @@
         rounded
         @click="decrement2"
         :disable="props.modelValue === props.min"
-        color="accent"
+        color="primary"
         size="lg"
         icon="keyboard_double_arrow_left"
       />
@@ -20,7 +20,7 @@
         rounded
         @click="decrement"
         :disable="props.modelValue === props.min"
-        color="accent"
+        color="primary"
         size="lg"
         :icon="step2 ? 'keyboard_arrow_left' : 'remove'"
       />
@@ -31,7 +31,7 @@
         rounded
         @click="increment"
         :disable="props.modelValue === props.max"
-        color="accent"
+        color="primary"
         size="lg"
         :icon="step2 ? 'keyboard_arrow_right' : 'add'"
       />
@@ -42,7 +42,7 @@
         rounded
         @click="increment2"
         :disable="props.modelValue === props.max"
-        color="accent"
+        color="primary"
         size="lg"
         icon="keyboard_double_arrow_right"
       />

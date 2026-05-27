@@ -13,7 +13,7 @@
         <q-btn
           v-if="rewardUrl"
           rounded
-          color="accent"
+          color="primary"
           :label="t('form.final_rewards.download')"
           icon-right="download"
           size="lg"
@@ -43,5 +43,4 @@ const rewardUrl = computed(() => {
 onMounted(() => {
   survey.finish()
 })
-
 </script>

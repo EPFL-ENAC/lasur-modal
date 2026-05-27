@@ -85,9 +85,9 @@
                       style="width: 40px; height: 40px"
                       no-spinner
                       no-transition
-                      class="icon-primary"
+                      :class="q.dark.isActive ? 'icon-white' : 'icon-dark'"
                     />
-                    <q-icon v-else :name="child.icon" color="primary" size="lg" />
+                    <q-icon v-else :name="child.icon" size="lg" />
                   </q-item-section>
                   <q-item-section>
                     <q-item-label>{{ child.label }}</q-item-label>
@@ -257,13 +257,5 @@ function onDropInsert(e: DragEvent, index: number) {
 
 .drag-enter {
   // border: dashed 4px $secondary !important;
-}
-
-.icon-primary {
-  filter: invert(26%) sepia(77%) saturate(3932%) hue-rotate(140deg) brightness(102%) contrast(99%);
-}
-
-.icon-white {
-  filter: invert(100%);
 }
 </style>

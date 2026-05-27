@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'Mobilyse',
+    brand: 'MODAL',
   },
   form: {
     error: {
@@ -110,7 +110,7 @@ export default {
       is_company_vehicle: {
         label: 'The vehicle used in general is...',
         option: {
-          company_vehicle: 'The one from the company',
+          company_vehicle: "Company's vehicle",
           private_vehicle: 'My private vehicle',
         },
       },

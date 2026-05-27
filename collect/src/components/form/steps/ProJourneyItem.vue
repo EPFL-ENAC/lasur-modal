@@ -15,7 +15,7 @@
       <template v-for="option in modeOptions" :key="option.value">
         <q-btn
           :title="option.label"
-          :color="journey.mode === option.value ? 'accent' : 'secondary'"
+          :color="journey.mode === option.value ? 'primary' : 'secondary'"
           size="xl"
           class="on-right on-left q-mb-md"
           @click="onSelect(option)"
@@ -26,9 +26,9 @@
             style="width: 45px; height: 45px"
             no-spinner
             no-transition
-            class="icon-white"
+            :class="journey.mode === option.value ? 'icon-dark' : 'icon-white'"
           />
-          <q-icon v-else :name="option.icon" color="white" size="lg" />
+          <q-icon v-else :name="option.icon" size="lg" />
         </q-btn>
       </template>
     </div>
@@ -41,7 +41,7 @@
         v-model="journey.is_company_vehicle"
         required
         class="q-mt-xl q-mb-xl"
-        color="accent"
+        color="primary"
       />
     </div>
     <div v-if="journey.mode">
@@ -53,7 +53,7 @@
         v-model="hasHeavyEquipment"
         required
         class="q-mb-lg"
-        color="accent"
+        color="primary"
       />
     </div>
     <NumberItem
@@ -136,9 +136,3 @@ function onSelect(option: Option | undefined) {
   }
 }
 </script>
-
-<style lang="scss">
-.icon-white {
-  filter: invert(100%);
-}
-</style>

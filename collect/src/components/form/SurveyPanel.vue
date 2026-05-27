@@ -112,7 +112,7 @@
       <q-btn
         rounded
         v-if="survey.isAfterStep('agreement') && survey.stepName !== 'final'"
-        color="accent"
+        color="primary"
         icon="keyboard_arrow_left"
         size="lg"
         :title="t('previous')"
@@ -122,7 +122,7 @@
       <q-btn
         rounded
         v-if="survey.isBeforeStep('comments')"
-        color="accent"
+        color="primary"
         icon="keyboard_arrow_right"
         size="lg"
         :title="t('next')"
@@ -132,7 +132,7 @@
       <q-btn
         rounded
         v-if="survey.stepName === 'comments'"
-        color="accent"
+        color="primary"
         :label="t('finish')"
         icon-right="send"
         size="lg"

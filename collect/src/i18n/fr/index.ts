@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'Mobilyse',
+    brand: 'MODAL',
   },
   form: {
     error: {

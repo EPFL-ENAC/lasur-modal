@@ -136,3 +136,11 @@ li + li {
 .rounded-borders {
   border-radius: 1rem !important;
 }
+
+.icon-white {
+  filter: invert(100%);
+}
+.icon-dark {
+  filter: brightness(0) saturate(100%) invert(22%) sepia(7%) saturate(420%) hue-rotate(343deg)
+    brightness(94%) contrast(89%);
+}

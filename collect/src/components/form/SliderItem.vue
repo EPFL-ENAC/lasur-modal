@@ -7,7 +7,7 @@
       marker-labels
       track-size="20px"
       thumb-size="45px"
-      thumb-color="accent"
+      thumb-color="primary"
       color="secondary"
       :min="min"
       :max="max"

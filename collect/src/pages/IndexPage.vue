@@ -4,7 +4,7 @@
       v-if="survey.started"
       size="10px"
       :value="progress"
-      color="accent"
+      color="primary"
       :animation-speed="200"
       class="q-mb-md"
     />
@@ -28,7 +28,7 @@
               <q-btn
                 rounded
                 icon-right="play_arrow"
-                color="accent"
+                color="primary"
                 :label="t('resume')"
                 size="lg"
                 @click="survey.started = true"
@@ -37,7 +37,7 @@
               <q-btn
                 flat
                 icon-right="restart_alt"
-                color="accent"
+                color="primary"
                 no-caps
                 :label="t('start_new')"
                 size="lg"
@@ -59,7 +59,7 @@
               <q-btn
                 rounded
                 icon-right="play_arrow"
-                color="accent"
+                color="primary"
                 :label="t('start')"
                 size="lg"
                 @click="onStart"

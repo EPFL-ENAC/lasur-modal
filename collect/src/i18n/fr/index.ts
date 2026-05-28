@@ -19,7 +19,7 @@ export default {
     },
     agreement: "Conditions générales d'utilisation (CGU) et politique de confidentialité",
     agreement_hint:
-      "Les CGU formalisent l'accord auquel vous consentez, entre vous et la Fondation Modus, en utilisant Mobilyse. La politique de confidentialité vous explique à quoi servent les données récoltées et comment celles-ci sont traitées.",
+      "Les CGU formalisent l'accord auquel vous consentez, entre vous et l'EPFL, en utilisant FORMIGA. La politique de confidentialité vous explique à quoi servent les données récoltées et comment celles-ci sont traitées.",
     terms_conditions: "J'ai lu et accepte les CGU",
     terms_conditions_link: "Voir les conditions générales d'utilisation",
     confidentiality: "J'ai lu et accepte la politique de confidentialité",
@@ -164,9 +164,9 @@ export default {
     change_other_levers_specify: 'Veuillez préciser ce qui vous aiderait',
     email: {
       title: 'Suivi longitudinal des participant·e·s (optionnel)',
-      text: `En renseignant votre adresse e-mail, vous permettez à votre organisation de suivre l’évolution des pratiques et des préférences en matière de mobilité au fil du temps. Lors d’une future utilisation de Mobilyse, cela contribuera à identifier les mesures de mobilité qui fonctionnent bien et celles qui peuvent être améliorées, afin que votre employeur puisse mieux soutenir vos besoins.
+      text: `En renseignant votre adresse e-mail, vous permettez à votre organisation de suivre l’évolution des pratiques et des préférences en matière de mobilité au fil du temps. Lors d’une future utilisation de FORMIGA, cela contribuera à identifier les mesures de mobilité qui fonctionnent bien et celles qui peuvent être améliorées, afin que votre employeur puisse mieux soutenir vos besoins.
 
-**Important :** Votre e-mail est immédiatement chiffré et n’est jamais stocké par Mobilyse. Votre employeur ne peut en aucun cas vous identifier ni relier vos réponses à votre identité. Nous garantissons que personne n’a accès à votre e mail, à aucun moment.`,
+**Important :** Votre e-mail est immédiatement chiffré et n’est jamais stocké par FORMIGA. Votre employeur ne peut en aucun cas vous identifier ni relier vos réponses à votre identité. Nous garantissons que personne n’a accès à votre e mail, à aucun moment.`,
       label: 'Votre adresse email (optionnelle)',
     },
     final: 'Vos réponses ont été enregistrées, merci de votre participation !',

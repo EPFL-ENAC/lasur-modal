@@ -29,8 +29,7 @@ a {
   color: $primary;
 }
 
-a.q-markdown--link,
-a.modus {
+a.q-markdown--link {
   text-decoration: dashed underline;
   text-decoration-color: $secondary;
   text-decoration-thickness: min(0.08em, 0.1rem);
@@ -39,8 +38,7 @@ a.modus {
   font-weight: 600;
 }
 
-a:hover.q-markdown--link,
-a:hover.modus {
+a:hover.q-markdown--link {
   text-decoration: dashed underline;
   text-decoration-color: $secondary;
   color: $primary;

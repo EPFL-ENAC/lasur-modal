@@ -39,8 +39,8 @@
 <script setup lang="ts">
 import WelcomeEn from 'src/assets/docs/en/welcome.md'
 import WelcomeFr from 'src/assets/docs/fr/welcome.md'
-import PrivacyEn from 'src/assets/docs/en/general/privacy.md'
-import PrivacyFr from 'src/assets/docs/fr/general/privacy.md'
+// import PrivacyEn from 'src/assets/docs/en/general/privacy.md'
+// import PrivacyFr from 'src/assets/docs/fr/general/privacy.md'
 import TermsEn from 'src/assets/docs/en/general/terms.md'
 import TermsFr from 'src/assets/docs/fr/general/terms.md'
 import WhatNextEn from 'src/assets/docs/en/general/what_next.md'
@@ -184,11 +184,11 @@ const sections = computed<DocSection[]>(() => [
         caption: t('docs.general.terms.caption'),
         markdown: locale.value === 'fr' ? TermsFr : TermsEn,
       },
-      {
-        title: t('docs.general.privacy.title'),
-        caption: t('docs.general.privacy.caption'),
-        markdown: locale.value === 'fr' ? PrivacyFr : PrivacyEn,
-      },
+      // {
+      //   title: t('docs.general.privacy.title'),
+      //   caption: t('docs.general.privacy.caption'),
+      //   markdown: locale.value === 'fr' ? PrivacyFr : PrivacyEn,
+      // },
       {
         title: t('docs.general.what_next.title'),
         caption: t('docs.general.what_next.caption'),

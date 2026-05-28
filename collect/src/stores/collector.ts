@@ -13,7 +13,7 @@ function makeRecord(rec: Partial<Record>): Record {
     data: {
       version: VERSION,
       terms_conditions: false,
-      confidentiality: false,
+      confidentiality: true,
       employment_rate: 100,
       remote_work_rate: 0,
       company_vehicle: false,

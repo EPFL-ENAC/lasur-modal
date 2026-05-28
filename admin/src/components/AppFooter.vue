@@ -1,21 +1,6 @@
 <template>
   <q-footer class="footer q-py-lg q-px-xl">
     <div>
-      <a
-        href="https://modus-ge.ch/project/toolkit-mobilite"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img src="/admin/LOGO-JAUNE.svg" alt="Mobilyse" />
-      </a>
-    </div>
-    <div>
-      <a href="https://modus-ge.ch" target="_blank" rel="noopener noreferrer">
-        <img src="/admin/powered_by_modus.svg" alt="Modus" />
-      </a>
-      <q-markdown :src="t('footer.modus')" />
-    </div>
-    <div>
       <a href="https://epfl.ch" target="_blank" rel="noopener noreferrer"
         ><img src="/admin/EPFL.svg" alt="EPFL"
       /></a>

@@ -183,10 +183,10 @@ function nextStep() {
       notifyError(t('form.error.terms_conditions'))
       return
     }
-    if (!survey.record.data.confidentiality) {
-      notifyError(t('form.error.confidentiality'))
-      return
-    }
+    // if (!survey.record.data.confidentiality) {
+    //   notifyError(t('form.error.confidentiality'))
+    //   return
+    // }
   }
   if (survey.stepName === 'employment') {
     if (

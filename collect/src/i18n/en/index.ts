@@ -20,7 +20,7 @@ export default {
     },
     agreement: 'General terms and conditions of use (GTC) and confidentiality policy',
     agreement_hint:
-      'The GTC formalizes the agreement to which you consent, between you and the Modus Foundation, by using Mobilyse. The confidentiality policy explains what the data collected is used for and how it is processed.',
+      'The GTC formalizes the agreement to which you consent, between you and the EPFL, by using FORMIGA. The confidentiality policy explains what the data collected is used for and how it is processed.',
     terms_conditions: 'I have read and accept the GTC',
     terms_conditions_link: 'See the terms and conditions',
     confidentiality: 'I have read and accept the privacy policy',
@@ -156,9 +156,9 @@ export default {
     change_other_levers_specify: 'Please specify what other measures would help you',
     email: {
       title: 'Longitudinal following of participants (optional)',
-      text: `By providing your email address, you enable your organisation to monitor how mobility practices and preferences evolve over time. When Mobilyse is used again in the future, this helps identify which mobility measures are effective and which could be improved, allowing your employer to better support your mobility needs.
+      text: `By providing your email address, you enable your organisation to monitor how mobility practices and preferences evolve over time. When FORMIGA is used again in the future, this helps identify which mobility measures are effective and which could be improved, allowing your employer to better support your mobility needs.
 
-**Important:** your email address is instantly encrypted and never stored by Mobilyse. Your employer cannot, under any circumstances, identify you or link your responses to you personally. We guarantee that no one has access to your email address at any point.`,
+**Important:** your email address is instantly encrypted and never stored by FORMIGA. Your employer cannot, under any circumstances, identify you or link your responses to you personally. We guarantee that no one has access to your email address at any point.`,
       label: 'Your email address (optional)',
     },
     final: 'Your answers have been registered, thank you for your participation!',

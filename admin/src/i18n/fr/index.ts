@@ -25,9 +25,9 @@ export default {
     info_url: "Lien d'information",
     info_url_hint:
       "Un lien vers plus d'informations sur les options de mobilité de cette organisation.",
-    can_be_cited: 'Peut être citée comme utilisateur de mobilyse',
+    can_be_cited: 'Peut être citée comme utilisateur de FORMIGA',
     can_be_cited_toggle:
-      'Je ne souhaite pas que la Fondation Modus cite le nom de mon organisation comme utilisateur de mobilyse',
+      "Je ne souhaite pas que l'EPFL/LASUR cite le nom de mon organisation comme utilisateur de FORMIGA",
     your_role: 'Votre rôle',
     roles: {
       admin: 'Administrateur',
@@ -46,9 +46,9 @@ export default {
       'Vous pouvez préciser ici les mesures déjà en place en soutien à la mobilité de vos collaborateur·rice·s. Les mesures qui apparaissent ici sont une sélection de mesures "par défaut" ainsi que les "mesures spécifiques" entrées dans la section précédente "Mesures employeur".',
     rewards: {
       toggle: 'Je souhaite récompenser les participant·e·s.',
-      hint: 'Récompenser les collaborateur·trice·s répondant au questionnaire (que ce soit systématiquement ou via un tirage au sort / lotterie) permet d\'obtenir un taux plus élevé de réponses. Si vous souhaitez récompenser les participant·e·s, mobilyse peut fournir une "attestation" (document PDF) à la fin du remplissage du questionnaire à chaque répondant·e, qui prouvera sa participation. Le ou la répondant·e pourra alors transférer cette attestation auprès de la personne en charge d\'organiser les récompenses. Nous vous proposons de personnaliser le message qui sera affiché sur cette attestation, en expliquant la démarche à suivre (à qui transférer cette preuve, comment récupérer sa récompense, quelles sont les modalités du tirage au sort...).',
+      hint: 'Récompenser les collaborateur·trice·s répondant au questionnaire (que ce soit systématiquement ou via un tirage au sort / lotterie) permet d\'obtenir un taux plus élevé de réponses. Si vous souhaitez récompenser les participant·e·s, FORMIGA peut fournir une "attestation" (document PDF) à la fin du remplissage du questionnaire à chaque répondant·e, qui prouvera sa participation. Le ou la répondant·e pourra alors transférer cette attestation auprès de la personne en charge d\'organiser les récompenses. Nous vous proposons de personnaliser le message qui sera affiché sur cette attestation, en expliquant la démarche à suivre (à qui transférer cette preuve, comment récupérer sa récompense, quelles sont les modalités du tirage au sort...).',
       default_message:
-        "Bravo et merci pour votre participation à l'enquête mobilyse ! Vos réponses sont précieuses et nous permettront de mieux comprendre comment vous aider dans votre mobilité au quotidien. En téléchargeant ce document et en le transférant à [...], vous pourrez profiter de [...].",
+        "Bravo et merci pour votre participation à l'enquête FORMIGA ! Vos réponses sont précieuses et nous permettront de mieux comprendre comment vous aider dans votre mobilité au quotidien. En téléchargeant ce document et en le transférant à [...], vous pourrez profiter de [...].",
       message_placeholder: 'Message pour les participants',
     },
     contact_name: 'Nom du contact',
@@ -93,7 +93,7 @@ export default {
       defaultContactName: 'NOM_DE_CONTACT',
       template: `Chères collaboratrices, chers collaborateurs,
 
-Mobilyse est un outil proposé par la Fondation Modus et l'EPFL pour aider les organisations à adapter les aides à la mobilité proposées aux collaboratrices et collaborateurs. Nous utilisons aujourd'hui cet outil pour comprendre comment vous accompagner au mieux dans votre mobilité quotidienne, que ce soit vos déplacements domicile-travail ou vos déplacements professionnels (dans le cadre de vos fonctions). 🚲🚃🚶🚈
+FORMIGA est un outil proposé par l'EPFL pour aider les organisations à adapter les aides à la mobilité proposées aux collaboratrices et collaborateurs. Nous utilisons aujourd'hui cet outil pour comprendre comment vous accompagner au mieux dans votre mobilité quotidienne, que ce soit vos déplacements domicile-travail ou vos déplacements professionnels (dans le cadre de vos fonctions). 🚲🚃🚶🚈
 
 Nous avons pour cela besoin de mieux connaitre vos pratiques et aspirations, et vous invitons à participer en répondant au questionnaire suivant. Cela vous prendra 10 minutes maximum et l'outil vous donnera directement des suggestions personnalisées pour vos déplacements :
 
@@ -106,7 +106,7 @@ Pourquoi participer ?
 - Donner votre avis sur l’accompagnement proposé pour votre mobilité, et aider ainsi à le faire évoluer 🙋
 - Contribuer à l’amélioration d’un outil gratuit et open access 🎁
 
-Le questionnaire est anonyme et aucune donnée personnelle n’est enregistrée. 🔐 A noter, vous pouvez sélectionner la langue (FR/EN) en haut à droite. Pour en savoir plus sur mobilyse, vous pouvez vous rendre ici : https://modus-ge.ch/project/mobilyse/.
+Le questionnaire est anonyme et aucune donnée personnelle n’est enregistrée. 🔐 A noter, vous pouvez sélectionner la langue (FR/EN) en haut à droite. Pour en savoir plus sur FORMIGA, vous pouvez vous rendre ici : https://www.epfl.ch/labs/lasur/.
 
 Nous vous remercions pour votre précieuse collaboration ! En cas de question, n’hésitez pas à contacter : [{contactEmail}](mailto:{contactEmail}).
 
@@ -118,16 +118,16 @@ Nous vous remercions pour votre précieuse collaboration ! En cas de question, n
   },
   docs: {
     title: 'Documentation',
-    hint: 'Trouvez des guides et des ressources pour vous aider à utiliser mobilyse.',
+    hint: 'Trouvez des guides et des ressources pour vous aider à utiliser FORMIGA.',
     general: {
       title: 'Général',
       privacy: {
         title: 'Politique de confidentialité',
-        caption: 'En savoir plus sur la politique de confidentialité de mobilyse',
+        caption: 'En savoir plus sur la politique de confidentialité de FORMIGA',
       },
       terms: {
         title: "Conditions d'utilisation",
-        caption: "En savoir plus sur les conditions d'utilisation de mobilyse",
+        caption: "En savoir plus sur les conditions d'utilisation de FORMIGA",
       },
       what_next: {
         title: 'Et après ?',
@@ -202,7 +202,7 @@ Nous vous remercions pour votre précieuse collaboration ! En cas de question, n
       best_practices: {
         title: "Bonnes pratiques pour la création d'une campagne",
         caption:
-          'Conseils et recommandations pour tirer le meilleur parti des fonctionnalités de campagne dans Mobilyse',
+          'Conseils et recommandations pour tirer le meilleur parti des fonctionnalités de campagne dans FORMIGA',
       },
       dashboard: {
         title: 'Comment se servir du Tableau de bord pour analyser les résultats ?',
@@ -317,7 +317,7 @@ Certains impacts sont aussi calculés :
       },
       mobility_potentials: {
         title: 'Potentiels de mobilité',
-        description: `Cette section expose les recommandations personnalisées suggérées aux participant·e·s. Mobilyse indique ainsi quels modes sont les plus susceptibles de convenir aux collaborateur·trice·s en fonction de leurs habitudes, contraintes, désirs, localisation résidentielle et de travail… Certains graphes illustrent également les gains potentiels en matière d'impact sur les émissions de gaz à effet de serre et de santé, dans le cas où tou·te·s les participant·e·s adopteraient les recommandations formulées par mobilyse.`,
+        description: `Cette section expose les recommandations personnalisées suggérées aux participant·e·s. FORMIGA indique ainsi quels modes sont les plus susceptibles de convenir aux collaborateur·trice·s en fonction de leurs habitudes, contraintes, désirs, localisation résidentielle et de travail… Certains graphes illustrent également les gains potentiels en matière d'impact sur les émissions de gaz à effet de serre et de santé, dans le cas où tou·te·s les participant·e·s adopteraient les recommandations formulées par FORMIGA.`,
       },
       behavioural_changes: {
         title: 'Motiver les changements de comportement',
@@ -850,9 +850,9 @@ Certains impacts sont aussi calculés :
       texts: {
         info: 'Les modes affichés sont ceux qui ont été recommandés à suffisamment de personnes ayant répondu à cette question.',
         default:
-          'Ce graphe montre la motivation des participant·e·s à adopter les recommandations qui leur sont faites par Mobilyse pour leur déplacement domicile-travail.',
+          'Ce graphe montre la motivation des participant·e·s à adopter les recommandations qui leur sont faites par FORMIGA pour leur déplacement domicile-travail.',
         specific:
-          'Ce graphe montre la motivation des participant·e·s à adopter les recommandations qui leur sont faites par Mobilyse pour leur déplacement domicile-travail, en fonction du mode recommandé. Au total, {percentage}% des participant·e·s sont motivé·e·s pour adopter les recommandations qui leur sont faites.',
+          'Ce graphe montre la motivation des participant·e·s à adopter les recommandations qui leur sont faites par FORMIGA pour leur déplacement domicile-travail, en fonction du mode recommandé. Au total, {percentage}% des participant·e·s sont motivé·e·s pour adopter les recommandations qui leur sont faites.',
       },
     },
     equipments_by_recommendations: {
@@ -956,7 +956,7 @@ Certains impacts sont aussi calculés :
   },
   data_protection_notice: {
     title: 'Notice sur la protection des données',
-    content: `Le rapport que nous allons vous transmettre dans le cadre de la campagne lancée via l’outil mobilyse contient des données agrégées, résultant des réponses fournies de manière volontaire et anonyme par vos collaborateur·trice·s.
+    content: `Le rapport que nous allons vous transmettre dans le cadre de la campagne lancée via l’outil FORMIGA contient des données agrégées, résultant des réponses fournies de manière volontaire et anonyme par vos collaborateur·trice·s.
 
 Cependant, en fonction de la taille de votre organisation et de la structure des réponses, il n’est pas exclu que certaines données agrégées permettent, directement ou indirectement, d’identifier une ou plusieurs personnes.
 Dans ce cas, le rapport pourrait contenir des données personnelles, soumises à la législation applicable en matière de protection des données (telle que la Loi fédérale sur la protection des données, ou le RGPD si des participant·e·s sont établi·e·s dans l’UE).
@@ -981,8 +981,6 @@ Par ailleurs, nous vous recommandons d’adapter votre registre du traitement en
     no_charts_to_export: 'Aucun graphique à exporter en PDF.',
   },
   footer: {
-    modus: `[Fondation Modus
-Pour une mobilité durable à Genève](https://www.modus-ge.ch)`,
     epfl: `
 [Laboratoire de sociologie urbaine (LASUR)](https://www.epfl.ch/labs/lasur/)
 
@@ -1017,7 +1015,7 @@ Pour une mobilité durable à Genève](https://www.modus-ge.ch)`,
   records: 'Enregistrements',
   no_records: "Pas d'enregistrements",
   records_not_super_admin:
-    'Seuls les super administrateurs peuvent voir les enregistrements directement sur Mobilyse. Cependant, ils sont toujours disponibles pour téléchargement sur le bouton ci-dessus',
+    'Seuls les super administrateurs peuvent voir les enregistrements directement sur FORMIGA. Cependant, ils sont toujours disponibles pour téléchargement sur le bouton ci-dessus',
   close: 'Fermer',
   cancel: 'Annuler',
   companies: 'Organisations',
@@ -1046,8 +1044,8 @@ Pour une mobilité durable à Genève](https://www.modus-ge.ch)`,
   help: 'Aide',
   identifier: 'Identifiant',
   welcome: 'Bienvenue !',
-  introduction_text: `Bienvenue dans l'interface d'administration de Mobilyse !
-Utilisez le menu pour naviguer à travers les différentes sections et gérer les organisations, les campagnes, les utilisateurs, et consulter les statistiques de mobilité. La section Documentation est notamment à votre disposition pour vous renseigner et vous guider sur les différentes fonctionnalités de Mobilyse.`,
+  introduction_text: `Bienvenue dans l'interface d'administration de FORMIGA !
+Utilisez le menu pour naviguer à travers les différentes sections et gérer les organisations, les campagnes, les utilisateurs, et consulter les statistiques de mobilité. La section Documentation est notamment à votre disposition pour vous renseigner et vous guider sur les différentes fonctionnalités de FORMIGA.`,
   label_en: 'Libellé (EN)',
   label_fr: 'Libellé (FR)',
   last_modified: 'Dernière modification',

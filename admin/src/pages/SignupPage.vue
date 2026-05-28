@@ -71,7 +71,7 @@
                 flat
                 no-caps
                 class="text-hint q-mb-md"
-                href="https://modus-ge.ch/mobilyse-cgu-organisation"
+                href="/admin/docs/CGU.FORMIGA.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="title-bar q-pa-md">
-      <div class="text-h4 row">
+      <div class="text-h5 row">
         <q-breadcrumbs gutter="sm" active-color="title">
           <q-breadcrumbs-el :label="t('companies')" to="/companies" />
           <q-breadcrumbs-el :label="company?.name" :to="`/company/${company?.id}`" />
@@ -30,8 +30,10 @@
         />
       </div>
     </div>
-
-    <company-campaign v-if="campaign && company" :item="campaign" :company="company" />
+    <q-separator />
+    <div class="q-pa-md">
+      <company-campaign v-if="campaign && company" :item="campaign" :company="company" />
+    </div>
 
     <confirm-dialog
       v-if="campaign"

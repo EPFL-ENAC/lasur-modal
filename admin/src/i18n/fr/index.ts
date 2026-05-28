@@ -1028,7 +1028,7 @@ Par ailleurs, nous vous recommandons d’adapter votre registre du traitement en
   data: 'Données',
   download_csv: 'Télécharger CSV',
   overview: 'Vue d’ensemble',
-  participation_following: 'Suivi de participation',
+  participation_following: 'Suivi de la participation',
   view: 'Voir',
   edit: 'Editer',
   email: 'Email',

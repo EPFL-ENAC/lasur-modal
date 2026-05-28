@@ -1,6 +1,7 @@
 <template>
   <q-page>
-    <div class="text-h3 q-pa-md text-title">{{ t('dashboard') }}</div>
+    <div class="text-h5 q-pa-md text-title">{{ t('dashboard') }}</div>
+    <q-separator />
     <div class="q-pa-md">
       <q-card flat class="q-mb-lg">
         <q-card-section class="q-pb-none">

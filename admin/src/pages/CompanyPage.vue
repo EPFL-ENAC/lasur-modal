@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div class="title-bar q-pa-md">
-      <div class="text-h4 row">
+      <div class="text-h5 row">
         <q-breadcrumbs gutter="sm" active-color="title">
           <q-breadcrumbs-el :label="t('companies')" to="/companies" />
           <q-breadcrumbs-el :label="company?.name" />
@@ -18,135 +18,112 @@
         @click="onShowRemove"
       />
     </div>
-
-    <q-card flat class="q-ma-md">
-      <q-card-section>
-        <h5 class="text-h5 q-my-none">{{ t('overview') }}</h5>
-      </q-card-section>
-
-      <q-separator />
-
-      <q-card-section>
-        <div class="row q-col-gutter-md q-mb-md">
-          <div class="col-12 col-md-6">
-            <fields-list :items="items" :dbobject="company" />
-          </div>
-          <div class="col-12 col-md-6">
-            <fields-list :items="items2" :dbobject="company" />
-          </div>
+    <q-separator />
+    <div class="q-pa-md">
+      <div class="row q-gutter-md">
+        <div class="text-h6">{{ t('overview') }}</div>
+        <q-btn
+          v-if="isCompanyAdmin"
+          size="sm"
+          outline
+          color="field"
+          icon="bar_chart"
+          :label="t('report_global')"
+          @click="onShowStats"
+        />
+        <q-btn
+          v-if="isCompanyAdmin"
+          size="sm"
+          color="primary"
+          icon="edit"
+          :label="t('edit')"
+          @click="onEdit"
+        />
+      </div>
+      <div class="row q-col-gutter-md q-mb-md">
+        <div class="col-12 col-md-6">
+          <fields-list :items="items" :dbobject="company" />
         </div>
-      </q-card-section>
+        <div class="col-12 col-md-6">
+          <fields-list :items="items2" :dbobject="company" />
+        </div>
+      </div>
 
-      <template v-if="isCompanyAdmin">
-        <q-separator />
-
-        <q-card-actions align="right">
-          <q-btn
-            size="sm"
-            outline
-            color="field"
-            icon="bar_chart"
-            :label="t('report_global')"
-            @click="onShowStats"
-          />
-          <q-btn size="sm" color="primary" icon="edit" :label="t('edit')" @click="onEdit" />
-        </q-card-actions>
-      </template>
-    </q-card>
-
-    <q-card flat class="q-ma-md">
-      <q-card-section>
-        <h5 class="text-h5 q-my-none">{{ t('company.actions') }}</h5>
-      </q-card-section>
-
-      <q-separator />
-
-      <q-card-section>{{ t('company.employer_measures_description') }}</q-card-section>
-
-      <template v-if="isCompanyAdmin">
-        <q-separator />
-
-        <q-card-actions align="right">
+      <div class="row q-gutter-md q-mt-lg">
+        <div class="text-h6">{{ t('company.actions') }}</div>
+        <q-btn
+          v-if="isCompanyAdmin"
+          size="sm"
+          color="primary"
+          :label="t('company.custom_actions')"
+          icon="settings"
+          @click="onShowCustomActions"
+        >
+          <q-badge v-if="actionsStore.items.length" color="white" class="text-secondary q-ml-sm">
+            {{ actionsStore.items.length }}
+          </q-badge>
+        </q-btn>
+      </div>
+      <div class="q-mt-sm q-mb-xl">{{ t('company.employer_measures_description') }}</div>
+      <div class="row q-gutter-md">
+        <div class="text-h6">{{ t('campaigns') }}</div>
+      </div>
+      <q-table
+        v-if="company"
+        flat
+        :rows="campaigns"
+        :columns="columns"
+        row-key="id"
+        :loading="campaignsStore.loading"
+        :no-data-label="t('no_data')"
+      >
+        <template #top>
           <q-btn
             v-if="isCompanyAdmin"
             size="sm"
             color="primary"
-            :label="t('company.custom_actions')"
-            icon="settings"
-            @click="onShowCustomActions"
-          >
-            <q-badge v-if="actionsStore.items.length" color="white" class="text-secondary q-ml-sm">
-              {{ actionsStore.items.length }}
-            </q-badge>
-          </q-btn>
-        </q-card-actions>
-      </template>
-    </q-card>
-
-    <q-table
-      v-if="company"
-      class="q-ma-md"
-      flat
-      bordered
-      :rows="campaigns"
-      :columns="columns"
-      row-key="id"
-      :loading="campaignsStore.loading"
-      :no-data-label="t('no_data')"
-    >
-      <template #top>
-        <div class="title-bar">
-          <h5 class="text-h5 q-my-none">{{ t('campaigns') }}</h5>
-
-          <div class="title-toolbar">
+            :disable="campaignsStore.loading"
+            :label="t('add')"
+            icon="add"
+            @click="onAddCampaign"
+          />
+        </template>
+        <!-- Custom Body Slot to handle the link -->
+        <template #body-cell-name="props">
+          <q-td :props="props">
+            <router-link :to="`/company/${id}/campaign/${props.row.id}`" class="modus">
+              {{ props.row.name }}
+            </router-link>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-action="props">
+          <q-td :props="props">
             <q-btn
               v-if="isCompanyAdmin"
-              size="md"
-              color="primary"
-              :disable="campaignsStore.loading"
-              :label="t('add')"
-              icon="add"
-              @click="onAddCampaign"
+              color="foreground"
+              size="12px"
+              flat
+              dense
+              round
+              icon="visibility"
+              :aria-label="t('view')"
+              :to="`/company/${id}/campaign/${props.row.id}`"
             />
-          </div>
-        </div>
-      </template>
-      <!-- Custom Body Slot to handle the link -->
-      <template #body-cell-name="props">
-        <q-td :props="props">
-          <router-link :to="`/company/${id}/campaign/${props.row.id}`" class="modus">
-            {{ props.row.name }}
-          </router-link>
-        </q-td>
-      </template>
-      <template v-slot:body-cell-action="props">
-        <q-td :props="props">
-          <q-btn
-            v-if="isCompanyAdmin"
-            color="foreground"
-            size="12px"
-            flat
-            dense
-            round
-            icon="visibility"
-            :aria-label="t('view')"
-            :to="`/company/${id}/campaign/${props.row.id}`"
-          />
-          <q-btn
-            v-if="isCompanyAdmin"
-            color="foreground"
-            size="12px"
-            flat
-            dense
-            round
-            icon="edit"
-            :aria-label="t('edit')"
-            @click="onEditCampaign(props.row)"
-          />
-        </q-td>
-      </template>
-    </q-table>
-
+            <q-btn
+              v-if="isCompanyAdmin"
+              color="foreground"
+              size="12px"
+              flat
+              dense
+              round
+              icon="edit"
+              :aria-label="t('edit')"
+              @click="onEditCampaign(props.row)"
+            />
+          </q-td>
+        </template>
+      </q-table>
+    </div>
     <company-dialog v-model="showDialog" :item="company" @saved="onSaved" />
     <confirm-dialog
       v-if="company"

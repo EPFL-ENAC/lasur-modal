@@ -1,192 +1,158 @@
 <template>
   <div>
-    <q-card flat class="q-ma-md">
-      <q-card-section>
-        <h5 class="text-h5 q-ma-none">{{ t('participation_following') }}</h5>
-      </q-card-section>
+    <div class="row q-gutter-md">
+      <div class="text-h6">{{ t('participation_following') }}</div>
+      <q-btn
+        v-if="isCompanyAdmin"
+        :label="t('report')"
+        size="sm"
+        color="primary"
+        icon="bar_chart"
+        @click="onShowStats"
+      />
+    </div>
+    <campaign-charts :item="item" />
 
-      <q-separator />
+    <div class="row q-gutter-md q-mt-xl">
+      <div class="text-h6">{{ t('overview') }}</div>
+    </div>
+    <div class="row q-col-gutter-md q-mb-md">
+      <div class="col-12 col-md-6">
+        <fields-list :items="items1" :dbobject="item" />
+      </div>
+      <div class="col-12 col-md-6">
+        <fields-list :items="items2" :dbobject="item" />
+      </div>
+    </div>
 
-      <q-card-section>
-        <campaign-charts :item="item" />
-      </q-card-section>
-
-      <q-separator />
-
-      <q-card-actions align="right">
-        <q-btn
-          v-if="isCompanyAdmin"
-          :label="t('report')"
-          size="sm"
-          color="primary"
-          icon="bar_chart"
-          @click="onShowStats"
-        />
-      </q-card-actions>
-    </q-card>
-
-    <q-card flat class="q-ma-md">
-      <q-card-section>
-        <h5 class="text-h5 q-ma-none">{{ t('overview') }}</h5>
-      </q-card-section>
-
-      <q-separator />
-
-      <q-card-section>
-        <div class="row q-col-gutter-md q-mb-md">
-          <div class="col-12 col-md-6">
-            <fields-list :items="items1" :dbobject="item" />
-          </div>
-          <div class="col-12 col-md-6">
-            <fields-list :items="items2" :dbobject="item" />
-          </div>
+    <div v-if="hasActions">
+      <div class="q-mb-sm">{{ t('company.actions') }}</div>
+      <div class="row q-col-gutter-md q-mb-md">
+        <div class="col-12 col-md-6">
+          <div class="text-hint q-mb-sm">{{ t('actions.personnal') }}</div>
+          <fields-list :items="actionItems" :dbobject="formattedActions" />
         </div>
-        <div v-if="hasActions">
-          <div class="q-mb-sm">{{ t('company.actions') }}</div>
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-12 col-md-6">
-              <div class="text-hint q-mb-sm">{{ t('actions.personnal') }}</div>
-              <fields-list :items="actionItems" :dbobject="formattedActions" />
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="text-hint q-mb-sm">{{ t('actions.professional') }}</div>
-              <fields-list :items="actionProItems" :dbobject="formattedActions" />
-            </div>
-          </div>
+        <div class="col-12 col-md-6">
+          <div class="text-hint q-mb-sm">{{ t('actions.professional') }}</div>
+          <fields-list :items="actionProItems" :dbobject="formattedActions" />
         </div>
-      </q-card-section>
-    </q-card>
+      </div>
+    </div>
 
-    <q-card flat class="q-ma-md">
-      <q-card-section>
-        <h5 class="text-h5 q-ma-none">
-          {{ t('campaign.workplaces.title') }}
-          <q-badge color="primary" class="on-right">{{ workplacesCount }}</q-badge>
-        </h5>
-      </q-card-section>
-
-      <q-separator />
-
-      <q-card-section>
-        <div>
-          <q-icon
-            :name="item.open_workplaces ? 'check_box' : 'check_box_outline_blank'"
-            size="sm"
-            class="q-mr-sm"
-          />
-          <span class="q-mt-xs">{{ t('campaign.workplaces.open_workplaces') }}</span>
-        </div>
-        <div>
-          <div v-for="(wp, index) in visibleWorkplaces" :key="index" class="workplace">
-            <div class="text-overline text-half-muted workplace-name">{{ wp.name }}</div>
-            <div class="workplace-address">
-              <div>{{ wp.address }}</div>
-              <div class="q-mt-sm">
-                <a
-                  :href="`https://www.google.com/maps/search/?api=1&query=${wp.lat},${wp.lon}`"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <q-icon name="location_on" class="q-mr-xs" />
-                  <span>{{ formatCoordinates(wp.lat, wp.lon) }}</span>
-                </a>
-              </div>
-            </div>
-            <div class="workplace-isochrone">
-              <q-expansion-item
-                :label="t('campaign.workplaces.show_isochrone')"
-                icon="map"
-                expand-icon="expand_more"
-                header-class="bg-super-muted"
+    <div class="row q-gutter-md q-mt-xl">
+      <div class="text-h6">
+        {{ t('campaign.workplaces.title') }}
+        <q-badge color="primary" class="on-right">{{ workplacesCount }}</q-badge>
+      </div>
+      <q-btn
+        v-if="workplacesCount > 0"
+        size="sm"
+        color="primary"
+        :label="t('download_csv')"
+        icon="download"
+        class="on-right"
+        @click="onDownloadWorkplaces"
+      />
+    </div>
+    <div class="q-mt-md">
+      <q-icon
+        :name="item.open_workplaces ? 'check_box' : 'check_box_outline_blank'"
+        size="sm"
+        class="q-mr-sm"
+      />
+      <span class="q-mt-xs">{{ t('campaign.workplaces.open_workplaces') }}</span>
+    </div>
+    <q-list bordered class="q-mt-md">
+      <q-list-item v-for="(wp, index) in visibleWorkplaces" :key="index" class="workplace">
+        <q-item-section>
+          <div class="text-overline text-half-muted workplace-name">{{ wp.name }}</div>
+          <div class="workplace-address">
+            <div>{{ wp.address }}</div>
+            <div class="q-mt-sm">
+              <a
+                :href="`https://www.google.com/maps/search/?api=1&query=${wp.lat},${wp.lon}`"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <div class="q-pa-sm">
-                  <isochrones-map
-                    :mapId="`map-workplace-${index}`"
-                    :center="[wp.lon, wp.lat]"
-                    :reco="wp.address"
-                    height="400px"
-                  />
-                  <div class="text-body2 q-mt-sm">
-                    {{ t('campaign.workplaces.isochrones_hint') }}
-                  </div>
-                </div>
-              </q-expansion-item>
+                <q-icon name="location_on" class="q-mr-xs" />
+                <span>{{ formatCoordinates(wp.lat, wp.lon) }}</span>
+              </a>
             </div>
           </div>
-        </div>
-        <div class="row q-mt-sm">
-          <q-btn
-            v-if="hasMoreWorkplaces"
-            flat
-            no-caps
-            size="sm"
-            color="primary"
-            :label="t('show_more')"
-            icon="expand_more"
-            @click="shownWorkplaces = workplacesCount"
-          />
-          <q-btn
-            v-else-if="shownWorkplaces > SHOW_WORKPLACES_MIN"
-            flat
-            no-caps
-            size="sm"
-            color="primary"
-            :label="t('show_less')"
-            icon="expand_less"
-            @click="shownWorkplaces = SHOW_WORKPLACES_MIN"
-          />
-        </div>
-      </q-card-section>
+        </q-item-section>
+        <q-item-section side>
+          <div>
+            <q-expansion-item
+              :label="t('campaign.workplaces.show_isochrone')"
+              icon="map"
+              expand-icon="expand_more"
+              header-class="bg-super-muted"
+            >
+              <isochrones-map
+                :mapId="`map-workplace-${index}`"
+                :center="[wp.lon, wp.lat]"
+                :reco="wp.address"
+                height="400px"
+                class="q-pt-md"
+              />
+              <div class="text-body2 q-mt-sm">
+                {{ t('campaign.workplaces.isochrones_hint') }}
+              </div>
+            </q-expansion-item>
+          </div>
+        </q-item-section>
+      </q-list-item>
+    </q-list>
+    <div class="row q-mt-sm">
+      <q-btn
+        v-if="hasMoreWorkplaces"
+        flat
+        no-caps
+        size="sm"
+        color="primary"
+        :label="t('show_more')"
+        icon="expand_more"
+        @click="shownWorkplaces = workplacesCount"
+      />
+      <q-btn
+        v-else-if="shownWorkplaces > SHOW_WORKPLACES_MIN"
+        flat
+        no-caps
+        size="sm"
+        color="primary"
+        :label="t('show_less')"
+        icon="expand_less"
+        @click="shownWorkplaces = SHOW_WORKPLACES_MIN"
+      />
+    </div>
 
-      <q-separator />
-
-      <q-card-actions align="right">
-        <q-btn
-          v-if="workplacesCount > 0"
-          size="sm"
-          color="primary"
-          :label="t('download_csv')"
-          icon="download"
-          class="on-right"
-          @click="onDownloadWorkplaces"
-        />
-      </q-card-actions>
-    </q-card>
-
-    <q-card flat class="q-ma-md">
-      <q-card-section>
-        <h5 class="text-h5 q-ma-none">{{ t('participants') }}</h5>
-      </q-card-section>
-
-      <q-separator />
-
-      <q-card-section>
-        <div class="text-hint q-mb-sm">
-          {{ t('participants_campaign_hint') }}
-        </div>
-        <div class="q-mb-lg">
-          <q-btn
-            v-if="item.slug"
-            size="sm"
-            color="primary"
-            icon-right="content_copy"
-            :label="t('survey_link')"
-            no-caps
-            @click="onSurveyLinkCopy"
-          />
-          <q-btn
-            v-if="isCompanyAdmin"
-            :label="t('campaign.email_template.buttonText')"
-            outline
-            size="sm"
-            color="field"
-            icon="email"
-            class="q-ml-md"
-            @click="onShowEmailTemplate"
-          />
-        </div>
-      </q-card-section>
-    </q-card>
+    <div class="row q-gutter-md q-mt-lg">
+      <div class="text-h6">{{ t('participants') }}</div>
+    </div>
+    <div class="q-mb-md">
+      {{ t('participants_campaign_hint') }}
+    </div>
+    <div class="q-mb-lg">
+      <q-btn
+        v-if="item.slug"
+        size="sm"
+        color="primary"
+        icon-right="content_copy"
+        :label="t('survey_link')"
+        no-caps
+        @click="onSurveyLinkCopy"
+      />
+      <q-btn
+        v-if="isCompanyAdmin"
+        :label="t('campaign.email_template.buttonText')"
+        outline
+        size="sm"
+        color="field"
+        icon="email"
+        class="q-ml-md"
+        @click="onShowEmailTemplate"
+      />
+    </div>
 
     <company-charts-dialog
       v-if="props.company"
@@ -389,8 +355,6 @@ function onDownloadWorkplaces() {
     'workplace-isochrone workplace-isochrone';
 
   gap: 1rem;
-
-  border-bottom: 1px solid var(--secondary-border-color);
 }
 
 .workplace-name {

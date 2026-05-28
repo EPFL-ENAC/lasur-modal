@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <h4 class="text-h4 q-ma-none q-pa-md text-title">{{ t('records') }}</h4>
+    <div class="text-h5 q-ma-none q-pa-md text-title">{{ t('records') }}</div>
     <q-separator />
 
     <div class="q-pa-md">

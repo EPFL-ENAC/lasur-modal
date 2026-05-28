@@ -1,24 +1,6 @@
 <template>
   <q-page>
-    <div class="title-bar q-pa-md">
-      <div class="text-h4 text-title">{{ t('companies') }}</div>
-
-      <div class="title-toolbar">
-        <q-input dense outlined color="field" debounce="300" v-model="filter" clearable>
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-        <q-btn
-          size="md"
-          color="primary"
-          :disable="loading"
-          :label="t('add')"
-          icon="add"
-          @click="onAdd"
-        />
-      </div>
-    </div>
+    <div class="text-h5 q-ma-none q-pa-md text-title">{{ t('companies') }}</div>
     <q-separator />
     <div class="q-pa-md">
       <q-table
@@ -34,6 +16,22 @@
         @request="onRequest"
         :rows-per-page-options="[10, 25, 50]"
       >
+        <template v-slot:top>
+          <q-btn
+            size="sm"
+            color="primary"
+            :disable="loading"
+            :label="t('add')"
+            icon="add"
+            @click="onAdd"
+          />
+          <q-space />
+          <q-input dense outlined color="field" debounce="300" v-model="filter" clearable>
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
+        </template>
         <template v-slot:body-cell-name="props">
           <q-td :props="props">
             <router-link

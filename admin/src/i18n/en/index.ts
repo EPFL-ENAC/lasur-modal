@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'Modal Admin',
+    brand: 'FORMIGA Admin',
   },
   company: {
     label: 'Organisation',

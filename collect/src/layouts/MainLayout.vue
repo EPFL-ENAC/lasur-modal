@@ -60,7 +60,7 @@ onMounted(() => {
   if (savedDark !== null) {
     $q.dark.set(savedDark === '1')
   } else {
-    onDarknessToggle(true)
+    onDarknessToggle(false)
   }
 })
 

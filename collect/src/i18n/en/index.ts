@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'MODAL',
+    brand: 'FORMIGA',
   },
   form: {
     error: {
@@ -284,7 +284,7 @@ export default {
   type_enter_to_lookup_address: 'Type address, then press Enter to lookup',
   welcome: 'Welcome to {brand}',
   welcome_intro:
-    "Our home-to-work trips are part of everyday life... and let us be honest, we are all a bit tired of traffic jams, complicated routes, and time lost on the road.\n\nToday, we still lack concrete information to properly understand everyone's realities, constraints, and needs. That is why, together with [EPFL](https://www.epfl.ch/labs/lasur/), we are testing a prototype designed to better analyze home-to-work mobility and identify solutions that are better suited to the Geneva context.\n\nTo make this test useful, we need you as beta testers. Your participation will help us see whether the tool works well in real-world conditions and whether it can truly provide value.\n\nParticipation is voluntary and anonymous. The questionnaire takes about 5 minutes and can be completed until June 10.\n\n🎁 **The first 200 respondents will receive a CHF 5 SBB Rail Check at the end of the questionnaire.**",
+    "Our home-to-work trips are part of everyday life... and let us be honest, we are all a bit tired of traffic jams, complicated routes, and time lost on the road.\n\nToday, we still lack concrete information to properly understand everyone's realities, constraints, and needs. That is why, together with [EPFL](https://www.epfl.ch/labs/lasur/), we are testing a prototype designed to better analyze home-to-work mobility and identify solutions that are better suited to the Geneva context.\n\nTo make this test useful, we need you as beta testers. Your participation will help us see whether the tool works well in real-world conditions and whether it can truly provide value.\n\nParticipation is voluntary and anonymous. The questionnaire takes about 5 minutes and can be completed until June 10.\n\n🎁 **The first 200 respondents will receive a CHF 5.– SBB Rail Check at the end of the questionnaire.**",
   no_results: 'No results',
   local: 'Local',
   regional: 'Regional',

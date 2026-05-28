@@ -25,14 +25,14 @@ body {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: dashed underline;
   color: $primary;
 }
 
 a.q-markdown--link,
 a.modus {
-  text-decoration: none;
-  text-decoration-color: #333;
+  text-decoration: dashed underline;
+  text-decoration-color: $secondary;
   text-decoration-thickness: min(0.08em, 0.1rem);
   text-underline-offset: 0.14em;
   color: $primary;
@@ -41,8 +41,8 @@ a.modus {
 
 a:hover.q-markdown--link,
 a:hover.modus {
-  text-decoration: underline;
-  text-decoration-color: $primary;
+  text-decoration: dashed underline;
+  text-decoration-color: $secondary;
   color: $primary;
 }
 

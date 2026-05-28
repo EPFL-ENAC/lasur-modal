@@ -1,6 +1,6 @@
 export default {
   main: {
-    brand: 'MODAL',
+    brand: 'FORMIGA',
   },
   form: {
     error: {

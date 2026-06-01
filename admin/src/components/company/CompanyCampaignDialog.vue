@@ -144,6 +144,13 @@
               </div>
               <div>
                 <q-toggle
+                  v-model="selected.with_travel_pro"
+                  :label="t('campaign.with_travel_pro')"
+                />
+                <p class="text-hint q-mb-md">{{ t('campaign.with_travel_pro_hint') }}</p>
+              </div>
+              <div>
+                <q-toggle
                   v-model="withRewards"
                   :label="t('campaign.rewards.toggle')"
                   @update:model-value="onWithRewardsChanged"

@@ -46,6 +46,7 @@ export interface Campaign extends Entity {
   rewards_message?: { [locale: string]: string } | undefined
   workplaces?: Workplace[]
   open_workplaces?: boolean
+  with_travel_pro?: boolean
 }
 
 export interface CompanyAction {

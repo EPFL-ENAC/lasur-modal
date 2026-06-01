@@ -279,6 +279,10 @@ const items1: FieldItem[] = [
 
 const items2: FieldItem[] = [
   {
+    field: 'with_travel_pro',
+    label: 'campaign.with_travel_pro',
+  },
+  {
     field: 'start_date',
     label: 'start_date',
     format: (val: Campaign) => val.start_date?.split('T')[0] || '-',

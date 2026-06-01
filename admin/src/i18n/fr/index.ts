@@ -68,6 +68,9 @@ export default {
       'Le fichier CSV téléversé est manquant les colonnes requises suivantes : {columns}.',
     import_workplaces_hint:
       'Téléversez un fichier CSV pour ajouter/mette à jour plusieurs lieux de travail à la campagne en une seule fois. Le fichier doit contenir les colonnes suivantes : name, address, lat, lon.',
+    with_travel_pro: 'Avec voyages professionnels',
+    with_travel_pro_hint:
+      'Si activé, le sondage inclura des questions sur les voyages professionnels et le tableau de bord de la campagne inclura des statistiques et des recommandations associées.',
     workplaces: {
       title: 'Lieux de travail',
       number: 'Nombre de lieux de travail',

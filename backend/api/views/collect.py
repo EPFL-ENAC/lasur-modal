@@ -22,12 +22,12 @@ async def get_info(tokenOrSlug: str, session: AsyncSession = Depends(get_session
     if tokenOrSlug is None:
         raise HTTPException(
             status_code=400, detail="Missing token or slug")
-    
+
     try:
         campaign = await CampaignService(session).get_by_slug(tokenOrSlug)
     except:
         campaign = None
-    
+
     if not campaign:
         try:
             cr = await RecordService(session).get_by_token(tokenOrSlug)
@@ -35,10 +35,10 @@ async def get_info(tokenOrSlug: str, session: AsyncSession = Depends(get_session
                 campaign = await CampaignService(session).get(cr.campaign_id)
         except:
             campaign = None
-    
+
     if not campaign:
         raise HTTPException(status_code=404, detail="Campaign not found")
-    
+
     company = await CompanyService(session).get(campaign.company_id)
     return CampaignInfo(
         name=campaign.name,
@@ -48,7 +48,8 @@ async def get_info(tokenOrSlug: str, session: AsyncSession = Depends(get_session
         info_url=campaign.info_url if campaign.info_url else company.info_url,
         workplaces=campaign.workplaces,
         open_workplaces=campaign.open_workplaces,
-        rewards_message=campaign.rewards_message
+        rewards_message=campaign.rewards_message,
+        with_travel_pro=campaign.with_travel_pro
     )
 
 
@@ -83,7 +84,7 @@ async def get(tokenOrSlug: str, session: AsyncSession = Depends(get_session)) ->
         cr = await RecordService(session).get_by_token(tokenOrSlug)
     except:
         cr = None  # 404 if not found
-    
+
     if cr is not None:
         campaign = await CampaignService(session).get(cr.campaign_id)
         _check_campaign(campaign)
@@ -117,7 +118,7 @@ async def createOrUpdate(
     if tokenOrSlug is None:
         raise HTTPException(
             status_code=400, detail="Missing token or slug")
-    
+
     campaign = None
     if tokenOrSlug != item.token:
         # this is a campaign's slug
@@ -135,18 +136,19 @@ async def get_final(token: str, session: AsyncSession = Depends(get_session)) ->
     """Get a record by participant token, only if the participant has completed the survey"""
     if token is None:
         raise HTTPException(status_code=400, detail="Missing token")
-    
+
     record = await RecordService(session).get_by_token(token)
 
     if record is None:
         raise HTTPException(status_code=404, detail="Record not found")
     if record.response_id_in_campaign is None and (not record.data.get("change", None) or not record.data.get("change2", None)):
-        raise HTTPException(status_code=400, detail="Participant has not completed the survey yet")
-    
+        raise HTTPException(
+            status_code=400, detail="Participant has not completed the survey yet")
+
     campaign = await CampaignService(session).get(record.campaign_id)
     if campaign is None:
         raise HTTPException(status_code=404, detail="Campaign not found")
-    
+
     return RecordCertificate(response_id_in_campaign=record.response_id_in_campaign, rewards_message=campaign.rewards_message or {})
 
 
@@ -205,6 +207,7 @@ async def getTypo(token: str, locale: str = "en", session: AsyncSession = Depend
     record.comments = None  # clear comments
     await recordService.update(record.id, record)
     return response
+
 
 def _check_campaign(campaign: Campaign):
     """Check if campaign has a valid time frame

@@ -110,6 +110,7 @@ class CampaignInfo(BaseModel):
     workplaces: List[WorkplaceRead] = []
     open_workplaces: bool = False
     rewards_message: Optional[Dict[str, str]] = None
+    with_travel_pro: bool = False
 
 
 class WeeklyStats(BaseModel):
@@ -223,7 +224,6 @@ class JourneyEnergyStats(BaseModel):
     current: EnergyByJourney
     reco: EnergyByJourney
     gains: JourneyEnergyGains
-    
 
 
 class BehaviorChangeLever(BaseModel):
@@ -249,16 +249,19 @@ class BehaviorChangeByModeBase(BaseModel):
 class BehaviorChangeByModeLever(BehaviorChangeByModeBase):
     levers: List[BehaviorChangeLever] = []
 
+
 class BehaviorChangeByModeMotivation(BehaviorChangeByModeBase):
     motivations: List[BehaviorChangeMotivation] = []
 
 
 class BehaviorChangeStatsBase(BaseModel):
     total_responses: int
-    aggregation_type: str # "all_aggregated", "mode_split", or "mixed"
+    aggregation_type: str  # "all_aggregated", "mode_split", or "mixed"
+
 
 class BehaviorChangeStatsLever(BehaviorChangeStatsBase):
     by_mode_levers: List[BehaviorChangeByModeLever]
+
 
 class BehaviorChangeStatsMotivation(BehaviorChangeStatsBase):
     by_mode_motivation: List[BehaviorChangeByModeMotivation] = []
@@ -298,9 +301,11 @@ class EquipmentRecommendationMatrix(BaseModel):
     elec: EquipmentPerRecommendation = EquipmentPerRecommendation()
     inter: EquipmentPerRecommendation = EquipmentPerRecommendation()
 
+
 class EquipmentsStats(BaseModel):
     total: int
     equipment_recommendation_matrix: EquipmentRecommendationMatrix
+
 
 class Stats(BaseModel):
     total: int = 0

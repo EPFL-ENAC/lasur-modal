@@ -67,6 +67,9 @@ export default {
       'The uploaded CSV file is missing the following required columns: {columns}.',
     import_workplaces_hint:
       'Upload a CSV file to add/update multiple workplaces to the campaign at once. The file must contain the following columns: name, address, lat, lon.',
+    with_travel_pro: 'With professional travel',
+    with_travel_pro_hint:
+      'If enabled, the survey will include questions about professional travel and the campaign dashboard will include related statistics and recommendations.',
     workplaces: {
       title: 'Workplaces',
       number: 'Number of workplaces',

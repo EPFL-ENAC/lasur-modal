@@ -265,6 +265,10 @@ function nextStep() {
   }
 
   survey.incStep()
+  if (survey.stepName === 'travel_pro' && !collector.info?.with_travel_pro) {
+    // skip travel_pro step if not enabled
+    survey.incStep()
+  }
   if (survey.tokenOrSlug) {
     void collector.loadInfo(survey.tokenOrSlug)
     if (survey.stepName === 'recommendations') {
@@ -304,6 +308,10 @@ function nextStep() {
 function prevStep() {
   if (survey.stepName === 'agreement') return
   survey.decStep()
+  if (survey.stepName === 'travel_pro' && !collector.info?.with_travel_pro) {
+    // skip travel_pro step if not enabled
+    survey.decStep()
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 

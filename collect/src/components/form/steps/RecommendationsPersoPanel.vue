@@ -5,7 +5,7 @@
     </div>
     <q-card flat>
       <q-card-section>
-        <div class="text-h5">
+        <div class="text-h6">
           <SectionItem
             v-if="isModeSustainable && !isModeOptions"
             :label="t(`main_mode.sustainable`)"
@@ -17,8 +17,7 @@
           <SectionItem v-else :label="t(`main_mode.not_sustainable`)" />
         </div>
         <template v-for="(reco, idx) in recoDt" :key="idx">
-          <q-separator />
-          <div>
+          <div class="rounded-borders q-mb-md bg-secondary text-white">
             <div class="q-pa-md">
               <q-item-label class="text-body1 text-primary text-bold">{{
                 t(

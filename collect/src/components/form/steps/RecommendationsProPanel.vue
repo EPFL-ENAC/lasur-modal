@@ -2,14 +2,12 @@
   <div v-if="hasRecoPro">
     <q-card flat>
       <q-card-section>
-        <SectionItem :label="t('form.recommendations_pro')" />
+        <SectionItem :label="t('form.recommendations_pro')" class="text-h6" />
         <div
           v-for="(reco, index) in survey.recommendation.reco_pro?.reco_pros"
           :key="index"
           class="rounded-borders q-mb-md bg-secondary text-white"
         >
-          <q-separator />
-
           <div class="q-pa-md">
             <q-item-label class="text-body1 text-primary text-bold">{{
               t('form.journey_pro.label_idx', { index: index + 1 })

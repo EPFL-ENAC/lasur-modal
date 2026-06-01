@@ -1,38 +1,38 @@
 // Quasar SCSS (& Sass) Variables
 // --------------------------------------------------
 
-$brand-yellow-25: #fffcf4;
-$brand-yellow-50: #fef8e7;
-$brand-yellow-100: #f39869;
-$brand-yellow-200: #fbe29f;
-$brand-yellow-300: #f8d36f;
-$brand-yellow-400: #f3c65f;
-$brand-yellow-500: #b6cfa6;
-$brand-yellow-600: #c79232;
-$brand-yellow-700: #9f7324;
-$brand-yellow-800: #77561c;
-$brand-yellow-900: #4f3913;
-$brand-yellow-950: #2c1f09;
+$brand-light-25: #fffcf4;
+$brand-light-50: #fef8e7;
+$brand-light-100: #f39869;
+$brand-light-200: #fbe29f;
+$brand-light-300: #f8d36f;
+$brand-light-400: #f3c65f;
+$brand-light-500: #b6cfa6;
+$brand-light-600: #007480;
+$brand-light-700: #9f7324;
+$brand-light-800: #77561c;
+$brand-light-900: #4f3913;
+$brand-light-950: #2c1f09;
 
-$brand-purple-25: #f9f9f9;
-$brand-purple-50: #f7f7f7;
-$brand-purple-100: #dcc2cf;
-$brand-purple-200: #bca2b0;
-$brand-purple-300: #a28594;
-$brand-purple-400: #88697a;
-$brand-purple-500: #6d5162;
-$brand-purple-600: #413d3a;
-$brand-purple-700: #49313e;
-$brand-purple-800: #453a4c;
-$brand-purple-900: #291823;
-$brand-purple-950: #0c0e12;
+$brand-dark-25: #f9f9f9;
+$brand-dark-50: #f7f7f7;
+$brand-dark-100: #dcc2cf;
+$brand-dark-200: #bca2b0;
+$brand-dark-300: #a28594;
+$brand-dark-400: #88697a;
+$brand-dark-500: #6d5162;
+$brand-dark-600: #413d3a;
+$brand-dark-700: #49313e;
+$brand-dark-800: #453a4c;
+$brand-dark-900: #291823;
+$brand-dark-950: #0c0e12;
 
-$primary: $brand-yellow-500;
-$secondary: $brand-purple-600;
-$accent: $brand-yellow-500;
+$primary: $brand-light-500;
+$secondary: $brand-dark-600;
+$accent: $brand-light-500;
 
-$dark: $brand-purple-800;
-$dark-page: $brand-purple-800;
+$dark: $brand-dark-800;
+$dark-page: $brand-dark-800;
 
 $positive: #21ba45;
 $negative: #c10015;
@@ -43,35 +43,37 @@ $button-border-radius: 8px;
 
 // Theme Tokens
 body {
-  --nav-bg: #{$brand-yellow-100};
-  --foreground-color: #{$brand-purple-600};
-  --foreground-bg: #{$brand-purple-600};
-  --title-color: #{$brand-yellow-700};
-  --field-color: #{$brand-purple-600};
-  --field-label-color: #{$brand-purple-600};
+  --q-primary: #{$brand-light-500};
+  --nav-bg: #{$brand-light-100};
+  --foreground-color: #{$brand-dark-600};
+  --foreground-bg: #{$brand-dark-600};
+  --title-color: #{$brand-light-700};
+  --field-color: #{$brand-dark-600};
+  --field-label-color: #{$brand-dark-600};
   --field-bg: #{'white'};
-  --secondary-border-color: #{$brand-purple-200};
-  --muted-color: #{$brand-purple-300};
-  --half-muted-color: #{$brand-purple-400};
-  --super-muted-color: #{$brand-purple-100};
-  --hint-color: #{$brand-purple-400};
-  --primary-muted-color: #{$brand-yellow-200};
+  --secondary-border-color: #{$brand-dark-200};
+  --muted-color: #{$brand-dark-300};
+  --half-muted-color: #{$brand-dark-400};
+  --super-muted-color: #{$brand-dark-100};
+  --hint-color: #{$brand-dark-400};
+  --primary-muted-color: #{$brand-light-200};
 }
 
 body.body--dark {
-  --nav-bg: #{$brand-purple-600};
-  --foreground-color: #{$brand-yellow-500};
-  --foreground-bg: #{$brand-yellow-500};
-  --title-color: #{$brand-yellow-500};
-  --field-color: #{$brand-yellow-50};
-  --field-label-color: #{$brand-yellow-50};
-  --field-bg: #{$brand-purple-600};
-  --secondary-border-color: #{$brand-purple-300};
-  --muted-color: #{$brand-purple-300};
-  --half-muted-color: #{$brand-purple-200};
-  --super-muted-color: #{$brand-purple-400};
-  --hint-color: #{$brand-purple-200};
-  --primary-muted-color: #{$brand-yellow-300};
+  --q-primary: #{$brand-light-500};
+  --nav-bg: #{$brand-dark-600};
+  --foreground-color: #{$brand-light-500};
+  --foreground-bg: #{$brand-light-500};
+  --title-color: #{$brand-light-500};
+  --field-color: #{$brand-light-50};
+  --field-label-color: #{$brand-light-50};
+  --field-bg: #{$brand-dark-600};
+  --secondary-border-color: #{$brand-dark-300};
+  --muted-color: #{$brand-dark-300};
+  --half-muted-color: #{$brand-dark-200};
+  --super-muted-color: #{$brand-dark-400};
+  --hint-color: #{$brand-dark-200};
+  --primary-muted-color: #{$brand-light-300};
 }
 
 // Global Class Definitions
@@ -130,7 +132,7 @@ body.body--dark {
 // Quasar Overrides using variables
 
 .bg-secondary-ultra-light {
-  background-color: $brand-purple-100 !important;
+  background-color: $brand-dark-100 !important;
 }
 
 .q-btn:not(.q-btn--rounded) {
@@ -139,7 +141,7 @@ body.body--dark {
 
 .q-btn.bg-primary {
   color: $secondary !important;
-  outline: 1px solid $brand-yellow-600 !important;
+  outline: 1px solid $brand-light-600 !important;
 }
 
 .q-badge.bg-primary,
@@ -185,7 +187,7 @@ body.body--dark {
 .q-tabs {
   border-radius: 0.5rem !important;
   border: 1px solid var(--secondary-border-color) !important;
-  color: $brand-purple-300 !important;
+  color: $brand-dark-300 !important;
 }
 
 .text-hint {

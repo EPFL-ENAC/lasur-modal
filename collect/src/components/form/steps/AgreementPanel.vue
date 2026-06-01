@@ -30,6 +30,17 @@
         color="primary"
         class="text-h6"
       />
+      <div class="text-h6 q-ml-xl">
+        <a
+          href="/docs/Politique.de.Confidentialite.formiga.pdf"
+          target="_blank"
+          class="text-muted q-ml-sm"
+          rel="noopener noreferrer"
+        >
+          {{ t('form.confidentiality_link') }}
+          <q-icon name="open_in_new" size="xs" />
+        </a>
+      </div>
     </q-card-section>
   </q-card>
 </template>

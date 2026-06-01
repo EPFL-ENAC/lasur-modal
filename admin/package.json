@@ -1,8 +1,8 @@
 {
   "name": "admin",
   "version": "1.0.0",
-  "description": "Modal administration",
-  "productName": "Modal Admin",
+  "description": "FORMIGA administration",
+  "productName": "FORMIGA Admin",
   "author": "ymarcon <yannick.marcon@epfl.ch>",
   "type": "module",
   "private": true,

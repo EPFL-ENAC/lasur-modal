@@ -1,8 +1,8 @@
 {
   "name": "collect",
   "version": "1.0.0",
-  "description": "Data collection app for the Modal",
-  "productName": "Modal",
+  "description": "Data collection app for FORMIGA",
+  "productName": "FORMIGA",
   "author": "ymarcon <yannick.marcon@epfl.ch>",
   "type": "module",
   "private": true,

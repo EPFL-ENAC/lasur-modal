@@ -119,6 +119,7 @@ class CampaignInfo(BaseModel):
     workplaces: List[WorkplaceRead] = []
     open_workplaces: bool = False
     rewards_message: Optional[Dict[str, str]] = None
+    with_rewards: bool = False
     with_travel_pro: bool = False
 
 

@@ -132,6 +132,7 @@ export interface CampaignInfo {
   workplaces: AddressLocation[]
   open_workplaces?: boolean
   rewards_message?: { [key: string]: string }
+  with_rewards?: boolean
   with_travel_pro?: boolean
 }
 

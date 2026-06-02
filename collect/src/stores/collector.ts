@@ -119,6 +119,27 @@ export const useCollector = defineStore('collector', () => {
       })
   }
 
+  async function downloadReward(record: Record, baseName: string = 'reward') {
+    loading.value = true
+
+    return api
+      .get(`/collect/record/${record.token}/reward`, { responseType: 'blob' })
+      .then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.target = '_blank'
+        link.rel = 'noopener noreferrer'
+        link.setAttribute('download', `${baseName}.pdf`)
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  }
+
   return {
     info,
     loading,
@@ -129,5 +150,6 @@ export const useCollector = defineStore('collector', () => {
     loadTypo,
     saveComments,
     loadRecordCertificate,
+    downloadReward,
   }
 })

@@ -2,6 +2,7 @@
 from fastapi import HTTPException
 from datetime import datetime
 
+from sqlalchemy import func
 from sqlmodel import select
 
 from api.db import AsyncSession
@@ -14,6 +15,18 @@ class RewardsService:
 
     def __init__(self, session: AsyncSession):
         self.session = session
+
+    async def count_reward_documents_for_campaign(self, campaign_id: int, assigned: bool | None = None) -> int:
+        """Count reward documents for a campaign"""
+        statement = select(func.count()).select_from(RewardDocument).where(
+            RewardDocument.campaign_id == campaign_id)
+        if assigned is True:
+            statement = statement.where(RewardDocument.token != None)
+        elif assigned is False:
+            statement = statement.where(RewardDocument.token == None)
+
+        count = (await self.session.exec(statement)).one()
+        return int(count)
 
     async def get_reward_documents_for_campaign(self, campaign_id: int) -> list[RewardDocumentRead]:
         """Get reward documents for a campaign"""

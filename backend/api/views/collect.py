@@ -43,6 +43,7 @@ async def get_info(tokenOrSlug: str, session: AsyncSession = Depends(get_session
         raise HTTPException(status_code=404, detail="Campaign not found")
 
     company = await CompanyService(session).get(campaign.company_id)
+    available_rewards = await RewardsService(session).count_reward_documents_for_campaign(campaign.id, assigned=False)
     return CampaignInfo(
         name=campaign.name,
         company_name=company.name,
@@ -52,6 +53,7 @@ async def get_info(tokenOrSlug: str, session: AsyncSession = Depends(get_session
         workplaces=campaign.workplaces,
         open_workplaces=campaign.open_workplaces,
         rewards_message=campaign.rewards_message,
+        with_rewards=available_rewards > 0,
         with_travel_pro=campaign.with_travel_pro
     )
 
@@ -155,7 +157,7 @@ async def get_final(token: str, session: AsyncSession = Depends(get_session)) ->
     return RecordCertificate(response_id_in_campaign=record.response_id_in_campaign, rewards_message=campaign.rewards_message or {})
 
 
-@router.get("/record/{token}/reward_document", response_model_exclude_none=True)
+@router.get("/record/{token}/reward", response_model_exclude_none=True)
 async def download_reward_document_file(
     token: str,
     session: AsyncSession = Depends(get_session)

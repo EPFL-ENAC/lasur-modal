@@ -103,6 +103,7 @@
     "useModel": true,
     "useParticipants": true,
     "usePreferencesStore": true,
+    "useRewards": true,
     "useRoute": true,
     "useRouter": true,
     "useServices": true,

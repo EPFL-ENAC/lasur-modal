@@ -164,7 +164,8 @@ export default {
     final: 'Your answers have been registered, thank you for your participation!',
     final_rewards: {
       title: 'The organisation offers rewards for answering this survey',
-      download: 'Download attestation of participation',
+      download_certificate: 'Download attestation of participation',
+      download_reward: 'Download your reward',
       participation_id: 'Your participation ID: {id}',
     },
   },

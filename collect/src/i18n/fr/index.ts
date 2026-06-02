@@ -172,7 +172,8 @@ export default {
     final: 'Vos réponses ont été enregistrées, merci de votre participation !',
     final_rewards: {
       title: "L'organisation offre des récompenses pour les participants à ce questionnaire",
-      download: 'Télécharger votre attestation de participation',
+      download_certificate: 'Télécharger votre attestation de participation',
+      download_reward: 'Télécharger votre récompense',
       participation_id: 'ID de votre participation : {id}',
     },
   },

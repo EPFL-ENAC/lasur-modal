@@ -109,6 +109,8 @@ class Campaign(CampaignBase, table=True):
         back_populates="campaign", cascade_delete=True)
     workplaces: list["Workplace"] = Relationship(
         back_populates="campaign", cascade_delete=True)
+    reward_documents: list["RewardDocument"] = Relationship(
+        back_populates="campaign", cascade_delete=True)
 
 
 class ParticipantBase(TimestampMixin):
@@ -145,6 +147,27 @@ class Workplace(WorkplaceBase, table=True):
     )
     campaign_id: int = Field(default=None, foreign_key="campaign.id")
     campaign: Campaign | None = Relationship(back_populates="workplaces")
+
+
+class RewardDocumentBase(TimestampMixin):
+    name: str
+    content: Optional[bytes] = Field(default=None)
+    size: Optional[int] = Field(default=None)
+    # The associated record token, loosly coupled to the Record model via the token field.
+    # This allows us to associate a reward document with a record without a strict foreign key constraint,
+    # providing flexibility in how reward documents are linked to records.
+    token: Optional[str] = Field(default=None, unique=True)
+
+
+class RewardDocument(RewardDocumentBase, table=True):
+    id: Optional[int] = Field(
+        default=None,
+        nullable=False,
+        primary_key=True,
+        index=True,
+    )
+    campaign_id: int = Field(default=None, foreign_key="campaign.id")
+    campaign: Campaign | None = Relationship(back_populates="reward_documents")
 
 
 class RecordBase(SQLModel):
@@ -200,8 +223,3 @@ class AccessLog(AccessLogBase, table=True):
         index=True,
     )
     data_entry_id: int = Field(default=None, foreign_key="dataentry.id")
-
-# Association tables
-
-
-# Domain tables

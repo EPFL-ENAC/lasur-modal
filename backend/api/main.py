@@ -11,6 +11,7 @@ from api.views.companies import router as companies_router
 from api.views.actions import router as actions_router
 from api.views.campaigns import router as campaigns_router
 from api.views.participants import router as participants_router
+from api.views.rewards import router as rewards_router
 from api.views.records import router as records_router
 from api.views.users import router as users_router
 from api.views.collect import router as collect_router
@@ -89,6 +90,12 @@ app.include_router(
     records_router,
     prefix="/record",
     tags=["Records"],
+)
+
+app.include_router(
+    rewards_router,
+    prefix="/reward",
+    tags=["Rewards"],
 )
 
 app.include_router(

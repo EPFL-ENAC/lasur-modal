@@ -45,7 +45,16 @@ export default {
     employer_measures_hint:
       'Vous pouvez préciser ici les mesures déjà en place en soutien à la mobilité de vos collaborateur·rice·s. Les mesures qui apparaissent ici sont une sélection de mesures "par défaut" ainsi que les "mesures spécifiques" entrées dans la section précédente "Mesures employeur".',
     rewards: {
-      toggle: 'Je souhaite récompenser les participant·e·s.',
+      title: 'Récompenses pour les participant·e·s',
+      description:
+        'Récompenses sous forme de fichiers PDF pour les participant·e·s qui remplissent le sondage.',
+      no_rewards: "Aucune récompense n'a été téléchargée pour cette campagne pour le moment.",
+      assigned_rewards: 'Récompenses déjà attribuées à des participant·e·s',
+      search_placeholder: 'Filtrer par nom ou token...',
+      upload_files: 'Fichiers .pdf ou .zip',
+      upload_files_hint:
+        'Sélectionner les fichiers PDF de récompenses. Les archives zip de plusieurs fichiers sont aussi acceptées.',
+      toggle: 'Avec des récompenses pour les participant·e·s.',
       hint: 'Récompenser les collaborateur·trice·s répondant au questionnaire (que ce soit systématiquement ou via un tirage au sort / lotterie) permet d\'obtenir un taux plus élevé de réponses. Si vous souhaitez récompenser les participant·e·s, FORMIGA peut fournir une "attestation" (document PDF) à la fin du remplissage du questionnaire à chaque répondant·e, qui prouvera sa participation. Le ou la répondant·e pourra alors transférer cette attestation auprès de la personne en charge d\'organiser les récompenses. Nous vous proposons de personnaliser le message qui sera affiché sur cette attestation, en expliquant la démarche à suivre (à qui transférer cette preuve, comment récupérer sa récompense, quelles sont les modalités du tirage au sort...).',
       default_message:
         "Bravo et merci pour votre participation à l'enquête FORMIGA ! Vos réponses sont précieuses et nous permettront de mieux comprendre comment vous aider dans votre mobilité au quotidien. En téléchargeant ce document et en le transférant à [...], vous pourrez profiter de [...].",
@@ -1029,6 +1038,7 @@ Par ailleurs, nous vous recommandons d’adapter votre registre du traitement en
   doc: 'Documentation',
   dashboard: 'Tableau de bord',
   data: 'Données',
+  delete_all: 'Supprimer tout',
   download_csv: 'Télécharger CSV',
   overview: 'Vue d’ensemble',
   participation_following: 'Suivi de la participation',
@@ -1108,6 +1118,7 @@ Utilisez le menu pour naviguer à travers les différentes sections et gérer le
   terms_and_conditions_accept: "J'accepte les termes et conditions",
   terms_and_conditions_show: 'Voir les termes et conditions',
   token: 'Jeton',
+  upload: 'Téléverser',
   upload_csv: 'Téléverser CSV',
   users: 'Utilisateurs',
   valid_email_required: 'Une adresse email valide est requise',

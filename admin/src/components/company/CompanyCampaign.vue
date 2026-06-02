@@ -63,7 +63,7 @@
       <span class="q-mt-xs">{{ t('campaign.workplaces.open_workplaces') }}</span>
     </div>
     <q-list bordered class="q-mt-md">
-      <q-list-item v-for="(wp, index) in visibleWorkplaces" :key="index" class="workplace">
+      <q-item v-for="(wp, index) in visibleWorkplaces" :key="index" class="workplace">
         <q-item-section>
           <div class="text-overline text-half-muted workplace-name">{{ wp.name }}</div>
           <div class="workplace-address">
@@ -101,7 +101,7 @@
             </q-expansion-item>
           </div>
         </q-item-section>
-      </q-list-item>
+      </q-item>
     </q-list>
     <div class="row q-mt-sm">
       <q-btn
@@ -124,6 +124,123 @@
         icon="expand_less"
         @click="shownWorkplaces = SHOW_WORKPLACES_MIN"
       />
+    </div>
+
+    <div class="row q-gutter-md q-mt-lg">
+      <div class="text-h6">
+        {{ t('campaign.rewards.title') }}
+        <q-spinner-dots v-if="loadingRewards" color="primary" class="on-right" size="sm" />
+        <q-badge
+          v-if="!loadingRewards && rewardDocs && rewardDocs?.total > 0"
+          color="primary"
+          class="on-right"
+          ><span v-if="assignedRewards !== null">{{ filteredRewards.length }}/</span
+          >{{ rewardDocs.total }}</q-badge
+        >
+      </div>
+    </div>
+    <div class="q-mb-md">
+      {{ t('campaign.rewards.description') }}
+    </div>
+    <div class="q-mt-md">
+      <q-icon
+        :name="withRewards ? 'check_box' : 'check_box_outline_blank'"
+        size="sm"
+        class="q-mr-sm"
+      />
+      <span class="q-mt-xs">{{ t('campaign.rewards.toggle') }}</span>
+    </div>
+    <div v-if="withRewards && rewardDocs?.total === 0" class="q-mt-md">
+      <div>
+        <q-btn
+          v-if="isCompanyAdmin"
+          size="sm"
+          color="secondary"
+          icon="upload"
+          :label="t('upload')"
+          @click="showRewardsUploadDialog = true"
+        />
+      </div>
+      <div class="text-hint q-mt-md">
+        {{ t('campaign.rewards.no_rewards') }}
+      </div>
+    </div>
+    <div v-else-if="withRewards && rewardDocs && rewardDocs.total > 0" class="q-mt-md">
+      <q-toolbar class="q-pa-none">
+        <q-btn
+          v-if="isCompanyAdmin"
+          size="sm"
+          color="secondary"
+          icon="upload"
+          :label="t('upload')"
+          @click="showRewardsUploadDialog = true"
+          :disabled="processingRewardId === -1"
+        />
+        <q-btn
+          v-if="isCompanyAdmin"
+          size="sm"
+          color="primary"
+          icon="delete"
+          :label="t('delete_all')"
+          @click="onRewardsDeleteAll"
+          class="on-right"
+          :disabled="processingRewardId === -1"
+        />
+        <q-toggle
+          v-model="assignedRewards"
+          :label="t('campaign.rewards.assigned_rewards')"
+          class="on-right"
+          toggle-indeterminate
+        />
+        <q-space />
+        <q-input
+          v-model="rewardsSearch"
+          :placeholder="t('campaign.rewards.search_placeholder')"
+          outlined
+          dense
+          clearable
+          class="on-right"
+          debounce="300"
+        >
+          <template v-slot:prepend>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </q-toolbar>
+      <q-scroll-area visible style="height: 200px">
+        <q-list bordered separator class="q-mt-sm">
+          <q-item v-for="(doc, index) in filteredRewards || []" :key="index">
+            <q-item-section>
+              <q-item-label
+                >{{ doc.name }}
+                <span class="text-hint on-right">{{ formatBytes(doc.size) }}</span>
+                <q-badge v-if="doc.token" color="accent" class="on-right">{{ doc.token }}</q-badge>
+              </q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <div class="q-gutter-xs">
+                <q-btn
+                  flat
+                  size="sm"
+                  icon="download"
+                  @click="onDownloadReward(doc)"
+                  :loading="processingRewardId === doc.id"
+                  :disable="processingRewardId === doc.id"
+                />
+                <q-btn
+                  flat
+                  size="sm"
+                  icon="delete"
+                  color="negative"
+                  @click="onRewardsDelete(doc)"
+                  :loading="processingRewardId === doc.id"
+                  :disable="processingRewardId === doc.id"
+                />
+              </div>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
     </div>
 
     <div class="row q-gutter-md q-mt-lg">
@@ -161,27 +278,46 @@
       :campaign="item"
     />
     <email-template-dialog v-if="props.item" v-model="showEmailTemplateDialog" :campaign="item" />
+
+    <rewards-upload-dialog
+      v-if="props.item"
+      v-model="showRewardsUploadDialog"
+      :item="item"
+      :rewards="rewardDocs"
+      @saved="onLoadRewards"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { copyToClipboard } from 'quasar'
-import type { Campaign, Company, EmployerActions } from 'src/models'
+import type {
+  Campaign,
+  Company,
+  EmployerActions,
+  RewardDocuments,
+  RewardDocument,
+} from 'src/models'
 import CampaignCharts from 'src/components/charts/CampaignCharts.vue'
 import CompanyChartsDialog from 'src/components/company/CompanyChartsDialog.vue'
 import FieldsList from 'src/components/FieldsList.vue'
 import IsochronesMap from 'src/components/IsochronesMap.vue'
 import EmailTemplateDialog from 'src/components/EmailTemplateDialog.vue'
+import RewardsUploadDialog from 'src/components/company/RewardsUploadDialog.vue'
 import type { FieldItem } from 'src/components/FieldsList.vue'
 import { formatCoordinates } from 'src/utils/numbers'
 import { notifyInfo } from 'src/utils/notify'
 import { actionItems, actionProItems } from 'src/utils/options'
 import Papa from 'papaparse'
 import { makeSurveyLink } from 'src/utils/links'
+import { notifyError } from 'src/utils/notify'
+import { formatBytes } from 'src/utils/numbers'
 
 const { t, locale } = useI18n()
 const authStore = useAuthStore()
 const actionsStore = useActions()
+const campaignsStore = useCampaigns()
+const rewardsStore = useRewards()
 
 interface Props {
   item: Campaign
@@ -193,11 +329,39 @@ const SHOW_WORKPLACES_MIN = 5
 
 const showChartsDialog = ref(false)
 const showEmailTemplateDialog = ref(false)
+const showRewardsUploadDialog = ref(false)
 const shownWorkplaces = ref<number>(SHOW_WORKPLACES_MIN)
+const rewardDocs = ref<RewardDocuments | null>(null)
+const loadingRewards = ref(false)
+const processingRewardId = ref<number | null>(null)
+const assignedRewards = ref<boolean | null>(null)
+const rewardsSearch = ref<string>('')
 
 const isCompanyAdmin = computed(() => {
   if (!props.company) return false
   return authStore.isAdmin || props.company.administrators?.includes(authStore.profile?.email || '')
+})
+
+const withRewards = computed(() => {
+  return !!props.item.rewards_message || false
+})
+
+const filteredRewards = computed(() => {
+  if (!rewardDocs.value || !rewardDocs.value.data) return []
+  return [...rewardDocs.value.data]
+    .filter((doc) => {
+      if (assignedRewards.value === null) return true
+      return assignedRewards.value ? doc.token : !doc.token
+    })
+    .filter((doc) => {
+      if (!rewardsSearch.value) return true
+      const search = rewardsSearch.value.toLowerCase().trim()
+      return (
+        doc.name.toLowerCase().includes(search) ||
+        (doc.token && doc.token.toLowerCase().includes(search))
+      )
+    })
+    .sort((a, b) => (a.name || '').localeCompare(b.name || ''))
 })
 
 const visibleWorkplaces = computed(() => {
@@ -305,6 +469,23 @@ const items2: FieldItem[] = [
   },
 ]
 
+onMounted(onLoadRewards)
+
+function onLoadRewards() {
+  if (!props.item) return
+  loadingRewards.value = true
+  rewardDocs.value = null
+  campaignsStore
+    .getRewards(props.item)
+    .then((rewards) => {
+      rewardDocs.value = rewards
+    })
+    .catch(notifyError)
+    .finally(() => {
+      loadingRewards.value = false
+    })
+}
+
 function onSurveyLinkCopy() {
   if (!props.item.slug) return
   copyToClipboard(makeSurveyLink(props.item.slug!))
@@ -346,6 +527,44 @@ function onDownloadWorkplaces() {
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
+}
+
+function onDownloadReward(doc: RewardDocument) {
+  processingRewardId.value = doc.id || null
+  rewardsStore
+    .downloadReward(doc)
+    .catch(notifyError)
+    .finally(() => {
+      processingRewardId.value = null
+    })
+}
+
+function onRewardsDelete(doc: RewardDocument) {
+  if (!props.item || doc.id === undefined) return
+  processingRewardId.value = doc.id
+  rewardsStore
+    .deleteReward(doc)
+    .then(() => {
+      onLoadRewards()
+    })
+    .catch(notifyError)
+    .finally(() => {
+      processingRewardId.value = null
+    })
+}
+
+function onRewardsDeleteAll() {
+  if (!props.item) return
+  processingRewardId.value = -1 // special value to indicate bulk deletion
+  rewardsStore
+    .deleteRewards(rewardDocs.value?.data || [])
+    .then(() => {
+      onLoadRewards()
+    })
+    .catch(notifyError)
+    .finally(() => {
+      processingRewardId.value = null
+    })
 }
 </script>
 

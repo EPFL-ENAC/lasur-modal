@@ -43,3 +43,17 @@ export function checkUrlParamNumber(param: string | string[] | null | undefined)
   const num = Number(param)
   return Number.isFinite(num) ? num : null
 }
+
+export function formatBytes(bytes: number | null | undefined): string {
+  if (bytes === null || bytes === undefined) {
+    return 'N/A'
+  }
+  const units = ['B', 'KB', 'MB', 'GB', 'TB']
+  let i = 0
+  let value = bytes
+  while (value >= 1024 && i < units.length - 1) {
+    value /= 1024
+    i++
+  }
+  return `${formatNumber(Math.round(value))} ${units[i]}`
+}

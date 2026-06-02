@@ -44,7 +44,15 @@ export default {
     employer_measures_hint:
       'Here you can specify the measures already in place to support your employees’ mobility. The measures listed here are a selection of "default" measures, as well as the "specific measures" entered in the previous section, "Employer Measures".',
     rewards: {
-      toggle: 'I want to reward participants.',
+      title: 'Rewards for participants',
+      description: 'Rewards as PDF files for participants who complete the survey.',
+      no_rewards: 'No rewards have been uploaded for this campaign yet.',
+      assigned_rewards: 'Rewards already assigned to participants',
+      search_placeholder: 'Filter by name or token...',
+      upload_files: 'Files .pdf or .zip',
+      upload_files_hint:
+        'Upload reward PDF files. Zip archives of multiple files are also accepted.',
+      toggle: 'With participants rewards',
       hint: 'Rewarding employees who respond to the questionnaire (either systematically or via a draw / lottery) helps to achieve a higher response rate. If you wish to reward participants, FORMIGA can provide a "certificate" (PDF document) at the end of the questionnaire completion for each respondent, which will prove their participation. The respondent can then forward this certificate to the person in charge of organizing the rewards. We suggest that you customize the message that will be displayed on this certificate, explaining the procedure to follow (who to forward this proof to, how to claim their reward, what are the terms of the lottery...).',
       default_message:
         'Congratulations and thank you for your participation in the FORMIGA survey! Your responses are valuable and will help us better understand how to assist you with your daily mobility. By downloading this document and forwarding it to [...], you will be able get [...] as a reward.',
@@ -1014,6 +1022,7 @@ Furthermore, we recommend that you adapt your processing register accordingly.
   doc: 'Documentation',
   dashboard: 'Dashboard',
   data: 'Data',
+  delete_all: 'Delete all',
   download_csv: 'Download CSV',
   overview: 'Overview',
   participation_following: 'Participation tracking',
@@ -1091,6 +1100,7 @@ Use the menu to navigate through the different sections, manage organisations, c
   terms_and_conditions_accept: 'I accept the terms and conditions',
   terms_and_conditions_show: 'View terms and conditions',
   token: 'Token',
+  upload: 'Upload',
   upload_csv: 'Upload CSV',
   users: 'Users',
   valid_email_required: 'A valid email address is required',

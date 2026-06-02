@@ -2,7 +2,7 @@ from typing import List, Optional, Dict
 
 from pydantic import BaseModel, Field
 from geojson_pydantic import Polygon, MultiPolygon
-from api.models.domain import CompanyBase, CompanyActionBase, CampaignBase, ParticipantBase, RecordBase, DataEntryBase, WorkplaceBase
+from api.models.domain import CompanyBase, CompanyActionBase, CampaignBase, ParticipantBase, RecordBase, DataEntryBase, RewardDocumentBase, WorkplaceBase
 from enacit4r_sql.models.query import ListResult
 
 
@@ -69,6 +69,15 @@ class ParticipantResult(ListResult):
     data: List[ParticipantRead] = []
 
 
+class RewardDocumentRead(RewardDocumentBase):
+    id: int
+    campaign_id: int
+
+
+class RewardDocumentResult(ListResult):
+    data: List[RewardDocumentRead] = []
+
+
 class RecordRead(RecordBase):
     id: int
     campaign_id: Optional[int] = Field(default=None)
@@ -110,6 +119,7 @@ class CampaignInfo(BaseModel):
     workplaces: List[WorkplaceRead] = []
     open_workplaces: bool = False
     rewards_message: Optional[Dict[str, str]] = None
+    with_rewards: bool = False
     with_travel_pro: bool = False
 
 

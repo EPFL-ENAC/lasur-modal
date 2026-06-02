@@ -1,7 +1,9 @@
 from datetime import datetime
+from io import BytesIO
 import secrets
 from typing import Dict
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import StreamingResponse
 from api.db import get_session, AsyncSession
 from api.models.domain import Campaign, Workplace
 from api.models.query import RecordCertificate, RecordDraft, RecordRead, RecordComments, CampaignInfo
@@ -11,6 +13,7 @@ from api.services.companies import CompanyService
 from api.services.actions import CompanyActionService
 from api.services.records import RecordService
 from api.services.modal_typo import ModalTypoService
+from api.services.rewards import RewardsService
 
 router = APIRouter()
 
@@ -150,6 +153,30 @@ async def get_final(token: str, session: AsyncSession = Depends(get_session)) ->
         raise HTTPException(status_code=404, detail="Campaign not found")
 
     return RecordCertificate(response_id_in_campaign=record.response_id_in_campaign, rewards_message=campaign.rewards_message or {})
+
+
+@router.get("/record/{token}/reward_document", response_model_exclude_none=True)
+async def download_reward_document_file(
+    token: str,
+    session: AsyncSession = Depends(get_session)
+) -> StreamingResponse:
+    """Get the reward document assigned to a participant by token"""
+    if token is None:
+        raise HTTPException(
+            status_code=400, detail="Missing token")
+    record = await RecordService(session).get_by_token(token)
+
+    if record is None:
+        raise HTTPException(status_code=404, detail="Record not found")
+
+    reward = await RewardsService(session).get_reward_document_for_token(token, record.campaign_id)
+    filename = reward.name if reward.name.lower().endswith(
+        ".pdf") else f"{reward.name}.pdf"
+    return StreamingResponse(
+        BytesIO(reward.content or b""),
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+    )
 
 
 @router.put("/record/{token}/comments", response_model=RecordRead, response_model_exclude_none=True)

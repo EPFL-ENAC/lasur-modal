@@ -92,6 +92,7 @@ declare global {
   const useModel: typeof import('vue')['useModel']
   const useParticipants: typeof import('./stores/participants')['useParticipants']
   const usePreferencesStore: typeof import('./stores/preferences')['usePreferencesStore']
+  const useRewards: typeof import('./stores/rewards')['useRewards']
   const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useServices: typeof import('./stores/services')['useServices']
@@ -212,6 +213,7 @@ declare module 'vue' {
     readonly useModel: UnwrapRef<typeof import('vue')['useModel']>
     readonly useParticipants: UnwrapRef<typeof import('./stores/participants')['useParticipants']>
     readonly usePreferencesStore: UnwrapRef<typeof import('./stores/preferences')['usePreferencesStore']>
+    readonly useRewards: UnwrapRef<typeof import('./stores/rewards')['useRewards']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useServices: UnwrapRef<typeof import('./stores/services')['useServices']>

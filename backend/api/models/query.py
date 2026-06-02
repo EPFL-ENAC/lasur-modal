@@ -2,7 +2,7 @@ from typing import List, Optional, Dict
 
 from pydantic import BaseModel, Field
 from geojson_pydantic import Polygon, MultiPolygon
-from api.models.domain import CompanyBase, CompanyActionBase, CampaignBase, ParticipantBase, RecordBase, DataEntryBase, WorkplaceBase
+from api.models.domain import CompanyBase, CompanyActionBase, CampaignBase, ParticipantBase, RecordBase, DataEntryBase, RewardDocumentBase, WorkplaceBase
 from enacit4r_sql.models.query import ListResult
 
 
@@ -67,6 +67,15 @@ class ParticipantDraft(ParticipantBase):
 
 class ParticipantResult(ListResult):
     data: List[ParticipantRead] = []
+
+
+class RewardDocumentRead(RewardDocumentBase):
+    id: int
+    campaign_id: int
+
+
+class RewardDocumentResult(ListResult):
+    data: List[RewardDocumentRead] = []
 
 
 class RecordRead(RecordBase):

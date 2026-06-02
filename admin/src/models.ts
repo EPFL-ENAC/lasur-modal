@@ -22,6 +22,24 @@ export interface Participant extends Entity {
   data?: ParticipantData
 }
 
+export interface RewardDocument {
+  id?: number
+  campaign_id: number
+  name: string
+  token?: string
+  size?: number
+
+  created_at?: string
+  updated_at?: string
+  created_by?: string
+  updated_by?: string
+}
+
+export interface RewardDocuments {
+  total: number
+  data: RewardDocument[]
+}
+
 export interface Workplace {
   id?: number
   name: string

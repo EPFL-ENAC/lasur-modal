@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="componentRoot">
     <div v-if="modeOptions.length > 1" class="row q-mb-md">
       <q-select
         label="Mode"
@@ -105,8 +105,11 @@ const props = defineProps<Props>()
 
 const { t } = useI18n()
 
+const componentRoot = ref<HTMLElement | null>(null)
 const map = ref<Map>()
 let marker: Marker | undefined
+let visibilityObserver: IntersectionObserver | null = null
+const hasLoadedIsochrones = ref(false)
 const loadingIsochrones = ref(false)
 const isochronesData = ref<GeoJSON.FeatureCollection>()
 const selectedMode = ref<string>('WALK')
@@ -135,7 +138,15 @@ const showPoisMap = ref<{ [key: string]: boolean }>({
 
 const showTransitLines = ref(true)
 
-onMounted(onInit)
+onMounted(() => {
+  onInit()
+  setupVisibilityObserver()
+})
+
+onBeforeUnmount(() => {
+  visibilityObserver?.disconnect()
+  visibilityObserver = null
+})
 
 function onInit() {
   map.value = new Map({
@@ -157,6 +168,38 @@ function onInit() {
   )
   marker = new Marker().setLngLat([props.center[0], props.center[1]])
   marker.addTo(map.value)
+}
+
+function setupVisibilityObserver() {
+  if (hasLoadedIsochrones.value) return
+  if (typeof IntersectionObserver === 'undefined') {
+    loadIsochronesOnce()
+    return
+  }
+
+  const target = componentRoot.value
+  if (!target) {
+    loadIsochronesOnce()
+    return
+  }
+
+  visibilityObserver = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (!entry?.isIntersecting) return
+      loadIsochronesOnce()
+      visibilityObserver?.disconnect()
+      visibilityObserver = null
+    },
+    { threshold: 0.1 },
+  )
+
+  visibilityObserver.observe(target)
+}
+
+function loadIsochronesOnce() {
+  if (hasLoadedIsochrones.value) return
+  hasLoadedIsochrones.value = true
   loadIsochrones()
 }
 

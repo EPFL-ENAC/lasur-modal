@@ -1,5 +1,8 @@
-import type { Campaign } from 'src/models'
+import { api } from 'src/boot/api'
+import type { Campaign, RewardDocuments } from 'src/models'
+
 const services = useServices()
+const authStore = useAuthStore()
 
 export const useCampaigns = defineStore('campaigns', () => {
   const items = ref<Campaign[]>([])
@@ -38,6 +41,52 @@ export const useCampaigns = defineStore('campaigns', () => {
     await load()
   }
 
+  async function getRewards(campaign: Campaign): Promise<RewardDocuments | null> {
+    if (campaign.id === undefined) return null
+    return authStore.updateToken().then(async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${authStore.accessToken}`,
+        },
+      }
+      return api
+        .get(`/campaign/${campaign.id}/rewards`, config)
+        .then((res) => {
+          return res.data as RewardDocuments
+        })
+        .catch(() => {
+          return null
+        })
+    })
+  }
+
+  async function upload_rewards(campaign: Campaign, files: Blob[]): Promise<boolean> {
+    if (campaign.id === undefined) return false
+    const formData = new FormData()
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      if (file) {
+        formData.append('files', file)
+      }
+    }
+    return authStore.updateToken().then(async () => {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${authStore.accessToken}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+      return api
+        .post(`/campaign/${campaign.id}/rewards/_upload`, formData, config)
+        .then(() => {
+          return true
+        })
+        .catch(() => {
+          return false
+        })
+    })
+  }
+
   return {
     items,
     companyId,
@@ -45,5 +94,7 @@ export const useCampaigns = defineStore('campaigns', () => {
     service,
     load,
     loadIfNeeded,
+    getRewards,
+    upload_rewards,
   }
 })

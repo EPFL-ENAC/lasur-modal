@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from api.config import config as app_config
 from alembic import context
 
-from api.models.domain import Company, Campaign, Participant, Workplace, Record, DataEntry, CompanyAction
+from api.models.domain import Company, Campaign, Participant, Workplace, Record, DataEntry, CompanyAction, RewardDocument
 from api.models.authz import ACL
 import sqlmodel
 

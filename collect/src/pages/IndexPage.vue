@@ -132,12 +132,6 @@ watch(
 )
 
 async function onInit() {
-  const cookieName = await survey.getRewardCookieName()
-  const cookieValue = await survey.getRewardCookieValuePrefix()
-  const rewarded = Cookies.get(cookieName)
-  if (rewarded && rewarded.startsWith(cookieValue)) {
-    wasRewarded.value = true
-  }
   if (route.params.token) {
     tkSlug.value = route.params.token as string
     if (survey.record?.token === undefined) {
@@ -146,6 +140,12 @@ async function onInit() {
     if (survey.tokenOrSlug !== tkSlug.value) {
       await reset()
     }
+  }
+  const cookieName = await survey.getRewardCookieName()
+  const cookieValue = await survey.getRewardCookieValuePrefix()
+  const rewarded = Cookies.get(cookieName)
+  if (rewarded && rewarded.startsWith(cookieValue)) {
+    wasRewarded.value = true
   }
 }
 

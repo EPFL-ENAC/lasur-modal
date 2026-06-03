@@ -151,6 +151,13 @@
               </div>
               <div>
                 <q-toggle
+                  v-model="selected.change_required"
+                  :label="t('campaign.change_required')"
+                />
+                <p class="text-hint q-mb-md">{{ t('campaign.change_required_hint') }}</p>
+              </div>
+              <div>
+                <q-toggle
                   v-model="withRewards"
                   :label="t('campaign.rewards.toggle')"
                   @update:model-value="onWithRewardsChanged"

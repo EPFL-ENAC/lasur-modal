@@ -78,6 +78,9 @@ export default {
     with_travel_pro: 'With professional travel',
     with_travel_pro_hint:
       'If enabled, the survey will include questions about professional travel and the campaign dashboard will include related statistics and recommendations.',
+    change_required: 'Willing to change questions required',
+    change_required_hint:
+      'If enabled, participants will be required to answer the question about their willingness to change their mobility habits in order to complete the survey. This allows you to access statistics on participants’ willingness to change and their needs in order to do so, which can help guide your decisions and identify the mobility aids you might consider.',
     workplaces: {
       title: 'Workplaces',
       number: 'Number of workplaces',
@@ -1115,4 +1118,5 @@ Use the menu to navigate through the different sections, manage organisations, c
   print: 'Print',
   mobility_statistics: 'Mobility statistics',
   transit_lines: 'Public transport network',
+  save: 'Save',
 }

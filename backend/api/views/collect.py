@@ -55,6 +55,7 @@ async def get_info(tokenOrSlug: str, session: AsyncSession = Depends(get_session
         rewards_message=campaign.rewards_message,
         with_rewards=available_rewards > 0,
         with_travel_pro=campaign.with_travel_pro,
+        change_required=campaign.change_required,
         ends_in=(campaign.end_date - datetime.now()
                  ).days if campaign.end_date else None
     )

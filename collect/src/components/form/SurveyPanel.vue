@@ -252,13 +252,21 @@ function nextStep() {
   }
   if (survey.stepName === 'change') {
     // Both undefined and 0 mean no data
-    if (!survey.record.data.change?.motivation && !survey.isRecommendationInUse()) {
+    if (
+      collector.info?.change_required &&
+      !survey.record.data.change?.motivation &&
+      !survey.isRecommendationInUse()
+    ) {
       notifyError(t('form.error.change_motivation_required'))
       return
     }
   }
   if (survey.stepName === 'change2') {
-    if (!survey.record.data.change2?.motivation && !survey.isRecommendation2InUse()) {
+    if (
+      collector.info?.change_required &&
+      !survey.record.data.change2?.motivation &&
+      !survey.isRecommendation2InUse()
+    ) {
       notifyError(t('form.error.change_motivation_required'))
       return
     }

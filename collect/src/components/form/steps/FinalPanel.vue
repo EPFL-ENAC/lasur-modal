@@ -49,6 +49,7 @@ const survey = useSurvey()
 const collector = useCollector()
 
 const transientRecord = ref<Record | null>(null)
+const rewardCookieName = ref('')
 const wasRewarded = ref(false)
 
 const hasRewards = computed(() => {
@@ -66,9 +67,9 @@ const rewardUrl = computed(() => {
 })
 
 onMounted(async () => {
-  const cookieName = await survey.getRewardCookieName()
+  rewardCookieName.value = await survey.getRewardCookieName()
   const cookieValue = await survey.getRewardCookieValuePrefix()
-  const rewarded = Cookies.get(cookieName)
+  const rewarded = Cookies.get(rewardCookieName.value)
   if (rewarded && rewarded.startsWith(cookieValue)) {
     wasRewarded.value = true
   }
@@ -79,9 +80,10 @@ onMounted(async () => {
 async function onDownloadReward() {
   if (wasRewarded.value || !transientRecord.value || !transientRecord.value.token) return
   const dateiso = new Date().toISOString().split('T')[0]
-  const name = await survey.getRewardCookieName()
   const prefix = await survey.getRewardCookieValuePrefix()
-  Cookies.set(name, `${prefix}-${dateiso}`, { expires: collector.info.ends_in || 365 })
+  Cookies.set(rewardCookieName.value, `${prefix}-${dateiso}`, {
+    expires: collector.info.ends_in || 365,
+  })
   const baseName = `${t('main.brand')}${dateiso}`
   await collector.downloadReward(transientRecord.value, baseName)
 }

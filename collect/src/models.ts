@@ -134,6 +134,7 @@ export interface CampaignInfo {
   rewards_message?: { [key: string]: string }
   with_rewards?: boolean
   with_travel_pro?: boolean
+  ends_in?: number
 }
 
 export interface IsochronesParams {

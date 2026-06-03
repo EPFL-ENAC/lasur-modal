@@ -3,7 +3,7 @@
     <div class="text-h4 text-center q-mb-xl">
       {{ t('form.final') }}
     </div>
-    <div v-if="collector.info.rewards_message" class="q-mb-xl">
+    <div v-if="hasRewards && !wasRewarded" class="q-mb-xl">
       <div class="text-h5 text-center q-mb-md">
         {{ t('form.final_rewards.title') }}
       </div>
@@ -11,7 +11,7 @@
 
       <div v-if="transientRecord" class="row justify-center q-mt-lg">
         <q-btn
-          v-if="hasRewards"
+          v-if="withRewards"
           rounded
           no-caps
           color="primary"
@@ -40,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+import { Cookies } from 'quasar'
 import type { Record } from 'src/models'
 import InfoPanel from 'src/components/form/steps/InfoPanel.vue'
 
@@ -48,8 +49,13 @@ const survey = useSurvey()
 const collector = useCollector()
 
 const transientRecord = ref<Record | null>(null)
+const wasRewarded = ref(false)
 
 const hasRewards = computed(() => {
+  return collector.info.rewards_message
+})
+
+const withRewards = computed(() => {
   return collector.info?.with_rewards
 })
 
@@ -59,14 +65,24 @@ const rewardUrl = computed(() => {
   return `/certificate/${transientRecord.value?.token}`
 })
 
-onMounted(() => {
+onMounted(async () => {
+  const cookieName = await survey.getRewardCookieName()
+  const cookieValue = await survey.getRewardCookieValuePrefix()
+  const rewarded = Cookies.get(cookieName)
+  if (rewarded && rewarded.startsWith(cookieValue)) {
+    wasRewarded.value = true
+  }
   transientRecord.value = { ...survey.record }
   survey.finish()
 })
 
 async function onDownloadReward() {
-  if (!transientRecord.value || !transientRecord.value.token) return
+  if (wasRewarded.value || !transientRecord.value || !transientRecord.value.token) return
   const dateiso = new Date().toISOString().split('T')[0]
-  await collector.downloadReward(transientRecord.value, `${t('main.brand')}-${dateiso}`)
+  const name = await survey.getRewardCookieName()
+  const prefix = await survey.getRewardCookieValuePrefix()
+  Cookies.set(name, `${prefix}-${dateiso}`, { expires: collector.info.ends_in || 365 })
+  const baseName = `${t('main.brand')}${dateiso}`
+  await collector.downloadReward(transientRecord.value, baseName)
 }
 </script>

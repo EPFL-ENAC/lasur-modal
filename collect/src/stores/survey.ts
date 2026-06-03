@@ -227,6 +227,29 @@ export const useSurvey = defineStore(
       return false
     }
 
+    async function hashString(str: string): Promise<string> {
+      const encoder = new TextEncoder()
+      const data = encoder.encode(str)
+
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data)
+
+      // Convert ArrayBuffer to hex string
+      const hashArray = Array.from(new Uint8Array(hashBuffer))
+      const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+
+      return hashHex
+    }
+
+    async function getRewardCookieName() {
+      // Reward is token scoped
+      const hash = await hashString(`rewarded-${tokenOrSlug.value || 'default'}`)
+      return '_' + hash.slice(0, 12) // Shorten the hash for cookie name
+    }
+
+    async function getRewardCookieValuePrefix() {
+      return await hashString('true')
+    }
+
     return {
       stepNames,
       tokenOrSlug,
@@ -250,6 +273,8 @@ export const useSurvey = defineStore(
       isModeInRecommendation,
       isRecommendationInUse,
       isRecommendation2InUse,
+      getRewardCookieName,
+      getRewardCookieValuePrefix,
     }
   },
   { persist: true },

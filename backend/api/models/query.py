@@ -121,6 +121,8 @@ class CampaignInfo(BaseModel):
     rewards_message: Optional[Dict[str, str]] = None
     with_rewards: bool = False
     with_travel_pro: bool = False
+    # number of days until campaign ends, or None if end date is not set
+    ends_in: Optional[int] = None
 
 
 class WeeklyStats(BaseModel):

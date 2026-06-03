@@ -61,7 +61,7 @@
                 :label="t('start')"
                 size="lg"
                 @click="onStart"
-                :disable="survey.tokenOrSlug === null"
+                :disable="wasRewarded || survey.tokenOrSlug === null"
                 class="q-px-md q-mt-md"
               />
             </div>
@@ -108,6 +108,7 @@ const collector = useCollector()
 const survey = useSurvey()
 
 const tkSlug = ref('')
+const wasRewarded = ref(false)
 
 const progress = computed(() => {
   return survey.step / survey.stepNames.length
@@ -131,6 +132,12 @@ watch(
 )
 
 async function onInit() {
+  const cookieName = await survey.getRewardCookieName()
+  const cookieValue = await survey.getRewardCookieValuePrefix()
+  const rewarded = Cookies.get(cookieName)
+  if (rewarded && rewarded.startsWith(cookieValue)) {
+    wasRewarded.value = true
+  }
   if (route.params.token) {
     tkSlug.value = route.params.token as string
     if (survey.record?.token === undefined) {

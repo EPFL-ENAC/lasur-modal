@@ -252,21 +252,13 @@ function nextStep() {
   }
   if (survey.stepName === 'change') {
     // Both undefined and 0 mean no data
-    if (
-      collector.info?.change_required &&
-      !survey.record.data.change?.motivation &&
-      !survey.isRecommendationInUse()
-    ) {
+    if (!survey.record.data.change?.motivation && !survey.isRecommendationInUse()) {
       notifyError(t('form.error.change_motivation_required'))
       return
     }
   }
   if (survey.stepName === 'change2') {
-    if (
-      collector.info?.change_required &&
-      !survey.record.data.change2?.motivation &&
-      !survey.isRecommendation2InUse()
-    ) {
+    if (!survey.record.data.change2?.motivation && !survey.isRecommendation2InUse()) {
       notifyError(t('form.error.change_motivation_required'))
       return
     }
@@ -277,6 +269,15 @@ function nextStep() {
     // skip travel_pro step if not enabled
     survey.incStep()
   }
+  if (survey.stepName === 'change' && !collector.info?.change_required) {
+    // skip change step if not enabled
+    survey.incStep()
+  }
+  if (survey.stepName === 'change2' && !collector.info?.change_required) {
+    // skip change2 step if not enabled
+    survey.incStep()
+  }
+
   if (survey.tokenOrSlug) {
     void collector.loadInfo(survey.tokenOrSlug)
     if (survey.stepName === 'recommendations') {
@@ -318,6 +319,14 @@ function prevStep() {
   survey.decStep()
   if (survey.stepName === 'travel_pro' && !collector.info?.with_travel_pro) {
     // skip travel_pro step if not enabled
+    survey.decStep()
+  }
+  if (survey.stepName === 'change2' && !collector.info?.change_required) {
+    // skip change step if not enabled
+    survey.decStep()
+  }
+  if (survey.stepName === 'change' && !collector.info?.change_required) {
+    // skip change2 step if not enabled
     survey.decStep()
   }
   window.scrollTo({ top: 0, behavior: 'smooth' })

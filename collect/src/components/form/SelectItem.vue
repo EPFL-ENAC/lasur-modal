@@ -5,7 +5,7 @@
     <div class="q-mt-lg">
       <div
         v-if="selectedOption && options.length === 1 && selectModel === options[0]?.value"
-        class="q-mb-md bg-primary text-white rounded-borders q-px-md q-py-sm"
+        class="q-mb-md bg-primary text-secondary rounded-borders q-px-md q-py-sm"
       >
         <div :class="optionLabelClass">{{ selectedOption.label }}</div>
         <div class="text-subtitle1">{{ selectedOption.hint }}</div>

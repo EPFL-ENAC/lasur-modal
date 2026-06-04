@@ -65,7 +65,7 @@ export interface Campaign extends Entity {
   workplaces?: Workplace[]
   open_workplaces?: boolean
   with_travel_pro?: boolean
-  change_required?: boolean
+  with_change?: boolean
 }
 
 export interface CompanyAction {

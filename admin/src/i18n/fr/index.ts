@@ -80,9 +80,9 @@ export default {
     with_travel_pro: 'Avec voyages professionnels',
     with_travel_pro_hint:
       'Si activé, le sondage inclura des questions sur les voyages professionnels et le tableau de bord de la campagne inclura des statistiques et des recommandations associées.',
-    change_required: 'Les questions sur la volonté de changer sont requises',
-    change_required_hint:
-      "Si activé, les participant·e·s devront répondre à la question sur leur volonté de changer leurs habitudes de mobilité pour pouvoir compléter le sondage. Cela vous permet d'accéder à des statistiques sur la volonté de changement des participant·e·s et leurs besoins pour le faire, ce qui peut aider à orienter vos décisions et identifier les aides à la mobilité que vous pourriez envisager.",
+    with_change: 'Les questions sur la volonté de changer sont requises',
+    with_change_hint:
+      "Si activé, le sondage inclura des questions sur leur volonté de changer leurs habitudes de mobilité pour pouvoir compléter le sondage. Cela vous permet d'accéder à des statistiques sur la volonté de changement des participant·e·s et leurs besoins pour le faire, ce qui peut aider à orienter vos décisions et identifier les aides à la mobilité que vous pourriez envisager.",
     workplaces: {
       title: 'Lieux de travail',
       number: 'Nombre de lieux de travail',

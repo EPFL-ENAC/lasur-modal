@@ -34,10 +34,10 @@
     <div v-if="survey.stepName === 'intermodality'">
       <JourneysPanel />
     </div>
-    <div v-if="survey.stepName === 'travel_pro'">
+    <div v-if="survey.stepName === 'travel_pro' && collector.info?.with_travel_pro">
       <TravelProPanel />
     </div>
-    <div v-if="survey.stepName === 'freq_mod_pro'">
+    <div v-if="survey.stepName === 'freq_mod_pro' && collector.info?.with_travel_pro">
       <ProJourneysPanel
         v-model="survey.record.data.freq_mod_pro_journeys"
         :modes="[
@@ -80,10 +80,10 @@
       <RecommendationsPanel />
       <InfoPanel class="q-mt-lg" />
     </div>
-    <div v-if="survey.stepName === 'change'">
+    <div v-if="survey.stepName === 'change' && collector.info?.with_change">
       <ChangePanel @update:modelValue="onSave" />
     </div>
-    <div v-if="survey.stepName === 'change2'">
+    <div v-if="survey.stepName === 'change2' && collector.info?.with_change">
       <Change2Panel @update:modelValue="onSave" />
     </div>
     <div v-if="survey.stepName === 'email'">
@@ -269,11 +269,11 @@ function nextStep() {
     // skip travel_pro step if not enabled
     survey.incStep()
   }
-  if (survey.stepName === 'change' && !collector.info?.change_required) {
+  if (survey.stepName === 'change' && !collector.info?.with_change) {
     // skip change step if not enabled
     survey.incStep()
   }
-  if (survey.stepName === 'change2' && !collector.info?.change_required) {
+  if (survey.stepName === 'change2' && !collector.info?.with_change) {
     // skip change2 step if not enabled
     survey.incStep()
   }
@@ -321,11 +321,11 @@ function prevStep() {
     // skip travel_pro step if not enabled
     survey.decStep()
   }
-  if (survey.stepName === 'change2' && !collector.info?.change_required) {
+  if (survey.stepName === 'change2' && !collector.info?.with_change) {
     // skip change step if not enabled
     survey.decStep()
   }
-  if (survey.stepName === 'change' && !collector.info?.change_required) {
+  if (survey.stepName === 'change' && !collector.info?.with_change) {
     // skip change2 step if not enabled
     survey.decStep()
   }

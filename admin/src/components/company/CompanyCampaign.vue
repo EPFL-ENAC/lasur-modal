@@ -447,8 +447,8 @@ const items2: FieldItem[] = [
     label: 'campaign.with_travel_pro',
   },
   {
-    field: 'change_required',
-    label: 'campaign.change_required',
+    field: 'with_change',
+    label: 'campaign.with_change',
   },
   {
     field: 'start_date',

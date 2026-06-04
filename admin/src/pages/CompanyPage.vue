@@ -347,7 +347,7 @@ function onAddCampaign() {
     company_id: company.value?.id || 0,
     open_workplaces: false,
     with_travel_pro: true,
-    change_required: true,
+    with_change: true,
   } as Campaign
   showCampaignDialog.value = true
 }

@@ -150,11 +150,8 @@
                 <p class="text-hint q-mb-md">{{ t('campaign.with_travel_pro_hint') }}</p>
               </div>
               <div>
-                <q-toggle
-                  v-model="selected.change_required"
-                  :label="t('campaign.change_required')"
-                />
-                <p class="text-hint q-mb-md">{{ t('campaign.change_required_hint') }}</p>
+                <q-toggle v-model="selected.with_change" :label="t('campaign.with_change')" />
+                <p class="text-hint q-mb-md">{{ t('campaign.with_change_hint') }}</p>
               </div>
               <div>
                 <q-toggle

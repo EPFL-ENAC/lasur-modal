@@ -134,7 +134,7 @@ export interface CampaignInfo {
   rewards_message?: { [key: string]: string }
   with_rewards?: boolean
   with_travel_pro?: boolean
-  change_required?: boolean
+  with_change?: boolean
   ends_in?: number
 }
 

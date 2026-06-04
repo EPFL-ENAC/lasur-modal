@@ -98,7 +98,7 @@ function onAdd() {
     company_id: props.company.id,
     open_workplaces: false,
     with_travel_pro: true,
-    change_required: true,
+    with_change: true,
   } as Campaign
   showDialog.value = true
 }

@@ -94,7 +94,7 @@ class CampaignBase(Entity):
     open_workplaces: bool = Field(default=False)
     nb_employees: Optional[int] = Field(default=None)
     with_travel_pro: bool = Field(default=True)
-    change_required: Optional[bool] = Field(default=True)
+    with_change: Optional[bool] = Field(default=True)
 
 
 class Campaign(CampaignBase, table=True):

@@ -118,6 +118,7 @@
         :title="t('previous')"
         @click="prevStep"
         class="q-mr-md"
+        :disable="collector.loadingTypo"
       />
       <q-btn
         rounded
@@ -128,6 +129,7 @@
         :title="t('next')"
         @click="nextStep"
         class="q-ml-md"
+        :disable="collector.loadingTypo"
       />
       <q-btn
         rounded

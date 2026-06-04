@@ -11,7 +11,7 @@
     <div class="container">
       <div class="content q-pa-lg">
         <div v-if="collector.loading">
-          <q-spinner-grid color="white" size="50px" />
+          <q-spinner-grid color="primary" size="50px" />
         </div>
         <div v-else>
           <div v-if="survey.started">

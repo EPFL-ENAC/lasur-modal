@@ -47,6 +47,7 @@ export const useCollector = defineStore('collector', () => {
   const info = ref<CampaignInfo>({} as CampaignInfo)
   const token = ref<string | null>(null)
   const loading = ref<boolean>(false)
+  const loadingTypo = ref<boolean>(false)
 
   async function loadInfo(tkOrSlug: string): Promise<CampaignInfo> {
     if (info.value.name) return Promise.resolve(info.value)
@@ -94,7 +95,7 @@ export const useCollector = defineStore('collector', () => {
   }
 
   async function loadTypo(record: Record, locale: string) {
-    loading.value = true
+    loadingTypo.value = true
 
     return api
       .get(`/collect/record/${record.token}/typo`, { params: { locale } })
@@ -102,7 +103,7 @@ export const useCollector = defineStore('collector', () => {
         return response.data
       })
       .finally(() => {
-        loading.value = false
+        loadingTypo.value = false
       })
   }
 
@@ -143,6 +144,7 @@ export const useCollector = defineStore('collector', () => {
   return {
     info,
     loading,
+    loadingTypo,
     token,
     loadInfo,
     loadRecordDraft,
